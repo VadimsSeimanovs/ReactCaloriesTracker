@@ -1,21 +1,122 @@
-import { StatusBar } from 'expo-status-bar';
 import React from 'react';
-import { StyleSheet, Text, View } from 'react-native';
+import Login from './components/Login';
+import Dashboard from './components/Dashboard';
+import ForgotPassword from './components/ForgotPassword';
+import VerifyCode from './components/VerifyCode';
+import { NewAccount} from './components/NewAccount';
+import { createStackNavigator } from '@react-navigation/stack';
+import { NavigationContainer } from '@react-navigation/native';
+import SetGoal from './components/SetGoal';
+import Signup2 from './components/Signup2';
+import { createBottomTabNavigator } from "@react-navigation/bottom-tabs";
+import Splash from './components/Splash';
+import {AuthContext} from './components/AuthContext';
 
-export default function App() {
-  return (
-    <View style={styles.container}>
-      <Text>Open up App.js to start working on your app!</Text>
-      <StatusBar style="auto" />
-    </View>
-  );
-}
+const AuthStack = createStackNavigator();
+const AuthStackScreen = () => (
+  <AuthStack.Navigator>
+    <AuthStack.Screen
+      name="Login"
+      component={Login}
+    />
+    <AuthStack.Screen
+      name="Signup2"
+      component={Signup2}
+    />
+    <AuthStack.Screen
+      name="SetGoal"
+      component={SetGoal}
+    />
+    <AuthStack.Screen
+      name="VerifyCode"
+      component={VerifyCode}
+    />
+    <AuthStack.Screen
+      name="NewAccount"
+      component={NewAccount}
+    />
+    <AuthStack.Screen
+      name="Dashboard"
+      component={Dashboard}
+    />
+    <AuthStack.Screen
+      name="ForgotPassword"
+      component={ForgotPassword}
+      />
+  </AuthStack.Navigator>
+);
 
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    backgroundColor: '#fff',
-    alignItems: 'center',
-    justifyContent: 'center',
-  },
-});
+const Tabs = createBottomTabNavigator();
+
+const TabsScreen = () => (
+  <Tabs.Navigator>
+    <Tabs.Screen name="Dashboard" component={Dashboard}/>
+    <Tabs.Screen name="Goals" component={SetGoal}/>
+    <Tabs.Screen name="Login" component={Login}/>
+    <Tabs.Screen name="NewAccount" component={NewAccount}/>
+</Tabs.Navigator>
+);
+
+const RootStackScreen = ({ userToken }) => (
+  <RootStack.Navigator>
+    {userToken ? (
+    <RootStack.Screen
+      name="Auth"
+      component={AuthStackScreen}
+      options={{
+        animationEnabled:false
+      }}
+    />
+    ) : (
+    <RootStack.Screen
+      name="Calories Tracker"
+      component={TabsScreen}
+      options={{
+        animationEnabled:false
+      }}
+    />
+    )}
+  </RootStack.Navigator>
+)
+
+const RootStack = createStackNavigator();
+
+export default () => {
+    const [isLoading, setIsLoading] = React.useState(true);
+    const [userToken, setUserToken] = React.useState(null);
+    
+    const authContext = React.useMemo(() => {
+      return {
+        signIn: () => {
+          setIsLoading(false);
+          setUserToken("asdf");
+        },
+        signUp: () => {
+          setIsLoading(false);
+          setUserToken("asdf");
+        },
+        signOut: () => {
+          setIsLoading(false);
+          setUserToken(null);
+        }
+      };
+    }, []);
+    
+    React.useEffect(() => {
+      setTimeout(() => {
+        setIsLoading(false);
+      }, 1000);
+    }, []);
+
+    if (isLoading) {
+      return <Splash/>;
+    }
+    
+    return ( 
+      <AuthContext.Provider value={authContext}>
+        <NavigationContainer>
+            <RootStackScreen userToken={userToken}/>
+        </NavigationContainer>
+      </AuthContext.Provider >
+    );
+};
