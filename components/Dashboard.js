@@ -1,13 +1,8 @@
-import { NavigationContainer, useNavigation } from '@react-navigation/native';
 import React from 'react';
 import { StyleSheet, Text, View, Button } from 'react-native';
 import { ProgressChart } from 'react-native-chart-kit';
 import { Dimensions } from 'react-native';
-import { createMaterialBottomTabNavigator  } from '@react-navigation/material-bottom-tabs';
-import SetGoals from './SetGoal';
-import Login from './Login';
-import { createStackNavigator } from '@react-navigation/stack';
-import { Icon } from 'react-native-elements'
+
 
 export default class Dashboard extends React.Component {
     render(){
@@ -46,7 +41,7 @@ export default class Dashboard extends React.Component {
             </View>
         );
     }
-}
+  }
 
 
 

@@ -3,14 +3,14 @@ import Login from './components/Login';
 import Dashboard from './components/Dashboard';
 import ForgotPassword from './components/ForgotPassword';
 import VerifyCode from './components/VerifyCode';
-import { NewAccount} from './components/NewAccount';
+import NewAccount from './components/NewAccount';
 import { createStackNavigator } from '@react-navigation/stack';
 import { NavigationContainer } from '@react-navigation/native';
 import SetGoal from './components/SetGoal';
 import Signup2 from './components/Signup2';
 import { createBottomTabNavigator } from "@react-navigation/bottom-tabs";
 import Splash from './components/Splash';
-import {AuthContext} from './components/AuthContext';
+import { AuthContext } from './components/AuthContext';
 
 const AuthStack = createStackNavigator();
 const AuthStackScreen = () => (
@@ -22,10 +22,6 @@ const AuthStackScreen = () => (
     <AuthStack.Screen
       name="Signup2"
       component={Signup2}
-    />
-    <AuthStack.Screen
-      name="SetGoal"
-      component={SetGoal}
     />
     <AuthStack.Screen
       name="VerifyCode"
@@ -50,9 +46,9 @@ const Tabs = createBottomTabNavigator();
 
 const TabsScreen = () => (
   <Tabs.Navigator>
-    <Tabs.Screen name="Dashboard" component={Dashboard}/>
-    <Tabs.Screen name="Goals" component={SetGoal}/>
     <Tabs.Screen name="Login" component={Login}/>
+    <Tabs.Screen name="Dashboard" component={Dashboard}/>
+    <Tabs.Screen name="SetGoal" component={SetGoal}/>
     <Tabs.Screen name="NewAccount" component={NewAccount}/>
 </Tabs.Navigator>
 );

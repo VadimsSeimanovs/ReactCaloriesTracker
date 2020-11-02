@@ -23,31 +23,30 @@ export default class SetGoal extends React.Component {
                 initial={0}
                 onPress={(value) => {this.setState({value:value})}}
               />
+      <Text h3>How much weight do you want to lose/gain?</Text>
+      <Input
+        placeholder='Weight'
+        errorStyle={{ color: 'red' }}
+        errorMessage='Check the weight and try again'
+      />
 
-              <Text h3>How much weight do you want to lose/gain?</Text>
-              <Input
-                placeholder='Weight'
-                errorStyle={{ color: 'red' }}
-                errorMessage='Check the weight and try again'
-              />
+      <Text h3>Type weight:</Text>
+      <Input
+        placeholder='Weight'
+        errorStyle={{ color: 'red' }}
+        errorMessage='Check the weight and try again'
+      />
 
-              <Text h3>Type weight:</Text>
-              <Input
-                placeholder='Weight'
-                errorStyle={{ color: 'red' }}
-                errorMessage='Check the weight and try again'
-              />
+        <RadioForm
+        radio_props={weight_props}
+        initial={0}
+        onPress={(value) => {this.setState({value:value})}}
+      />
 
-                <RadioForm
-                radio_props={weight_props}
-                initial={0}
-                onPress={(value) => {this.setState({value:value})}}
-              />
-
-              <Button title='Continue' raised onPress= {
-                () => {this.props.navigation.navigate('Dashboard')}
-              }/>
-            </View>
-        );
-    }
+      <Button title='Continue' raised onPress= {
+        () => {this.props.navigation.navigate('Dashboard', {name : 'Dashboard'})}
+      }/>
+    </View>
+  );
+}
 }
