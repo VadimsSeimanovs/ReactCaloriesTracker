@@ -13,20 +13,17 @@ export default class Login extends React.Component {
 
   onChangeText = (key, val) => {
     this.setState({ [key]: val })
-    console.log({ [key]: val})
+    //console.log({ [key]: val})
   }
 
   checkUserInput = () => {
-    FirebaseTest.init()
-
-    console.log("Email: " + this.state.email)
-
-    // sql statement
-    // check user input against sql statement
-    // if statement: if the check above does not match
-    if(this.state.email == 'test'){
-      if(this.state.password == 'test')
-        this.props.navigation.navigate('Dashboard')
+    if(this.state.email != ''){
+      if(this.state.password != '')
+        FirebaseTest.init();
+        if(FirebaseTest.signInUser(this.state.email, this.state.password) == true){
+            his.props.navigation.navigate('Dashboard');
+        }
+        console.log("test", FirebaseTest.signInUser(this.state.email, this.state.password));
     }
     else{
      alert('Enter email address and password')
@@ -34,7 +31,6 @@ export default class Login extends React.Component {
   }
 
   render(){
-
     return (
       <View>
           <Text h3>Email Address:</Text>
