@@ -14,6 +14,15 @@ var weight_props = [
 ];
 
 export default class SetGoal extends React.Component {
+
+  state = {
+    goalWeight: '',
+    goalType: ''
+  }
+  
+  checkUserInput = () =>{
+
+  }
     render(){
         return (
             <View>
@@ -31,12 +40,6 @@ export default class SetGoal extends React.Component {
       />
 
       <Text h3>Type weight:</Text>
-      <Input
-        placeholder='Weight'
-        errorStyle={{ color: 'red' }}
-        errorMessage='Check the weight and try again'
-      />
-
         <RadioForm
         radio_props={weight_props}
         initial={0}
@@ -44,7 +47,7 @@ export default class SetGoal extends React.Component {
       />
 
       <Button title='Continue' raised onPress= {
-        () => {this.props.navigation.navigate('Dashboard', {name : 'Dashboard'})}
+        () => {this.props.navigation.navigate('Signup2')}
       }/>
     </View>
   );

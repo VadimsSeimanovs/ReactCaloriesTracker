@@ -21,6 +21,7 @@ const actionCodeSettings = {
 };
 
 var databaseExists = false;
+var userExists = true;
 
 export default class FirebaseTest {
     //static auth;
@@ -52,19 +53,12 @@ export default class FirebaseTest {
     firebase.auth().signInWithEmailAndPassword(userEmail, userPassword).catch(function(error) {
       var errorCode = error.code;
       var errorMessage = error.message;
-
       if (errorCode === 'auth/wrong-password') {
+        userExists = false;
         alert('Wrong password.');
       } else {
+        userExists = false;
         alert(errorMessage);
-      }
-      
-      console.log("Test" + errorCode);
-
-      if(errorCode != ''){
-        return false;
-      }else{
-        return true;
       }
     });
   }
@@ -79,7 +73,7 @@ export default class FirebaseTest {
     });
   }
 
-  static inserData(userEmail, userPassword){
+  static insertData(userEmail, userPassword){
     firebase.database().ref('users/001').set({
       email: userEmail,
       password: userPassword
@@ -97,5 +91,9 @@ export default class FirebaseTest {
     }).catch(function(error) {
       console.log(error);
    });
+  }
+
+  static getUserExistance(){
+    return userExists;
   }
 }

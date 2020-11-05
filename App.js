@@ -39,6 +39,10 @@ const AuthStackScreen = () => (
       name="ForgotPassword"
       component={ForgotPassword}
       />
+    <AuthStack.Screen
+      name="SetGoal"
+      component={SetGoal}
+      />
   </AuthStack.Navigator>
 );
 
@@ -49,6 +53,7 @@ const TabsScreen = () => (
     <Tabs.Screen name="Login" component={Login}/>
     <Tabs.Screen name="Dashboard" component={Dashboard}/>
     <Tabs.Screen name="SetGoal" component={SetGoal}/>
+    {/* <Tabs.Screen name="Signup2" component={Signup2}/> */}
     <Tabs.Screen name="NewAccount" component={NewAccount}/>
 </Tabs.Navigator>
 );
@@ -66,7 +71,7 @@ const RootStackScreen = ({ userToken }) => (
     ) : (
     <RootStack.Screen
       name="Calories Tracker"
-      component={TabsScreen}
+      component={AuthStackScreen}
       options={{
         animationEnabled:false
       }}

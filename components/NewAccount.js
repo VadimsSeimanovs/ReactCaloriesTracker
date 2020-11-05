@@ -3,8 +3,42 @@ import { View } from 'react-native';
 import { Text, Input, Button } from 'react-native-elements'
 import DropDownPicker from 'react-native-dropdown-picker';
 import Icon from 'react-native-vector-icons/FontAwesome';
+import RadioForm from 'react-native-simple-radio-button';
+
+var weight_props = [
+  {label: 'Kg', value: 0 },
+  {label: 'Oz', value: 1 }
+];
+
+var height_props = [
+  {label: 'Meters', value: 0},
+  {label: 'Foot', value: 1}
+];
 
 export default class NewAccount extends React.Component{
+
+  state = {
+    age: '',
+    weight: '',
+    weightType: '',
+    height: '',
+    heightType: '',
+    gender: ''
+  }
+
+  onChangeText = (key, val) => {
+    this.setState({ [key]: val })
+    console.log({ [key]: val });
+  }
+
+  checkUserInput = () => {
+    //here we check if the age is valid so not 200 years old
+    // check if the weight is correct 
+    //check if theheight is entered and its correct format
+    //check if the gender is correct
+    this.props.navigation.navigate('SetGoal', {name: 'Set Goal'})
+  }
+
   render(){
     return(
     <View>
@@ -13,6 +47,7 @@ export default class NewAccount extends React.Component{
         placeholder='Age'
         errorStyle={{ color: 'red' }}
         errorMessage='Check the age and try again'
+        onChangeText={val => this.onChangeText('age', val)}
       />
 
       <Text h3>Enter weight:</Text>
@@ -20,6 +55,13 @@ export default class NewAccount extends React.Component{
         placeholder='Weight'
         errorStyle={{ color: 'red' }}
         errorMessage='Check the weight and try again'
+        onChangeText={val => this.onChangeText('weight', val)}
+      />
+      
+      <RadioForm
+        radio_props={weight_props}
+        initial={0}
+        onPress={(value) => {this.setState({value:value})}}
       />
 
       <Text h3>Enter height:</Text>
@@ -27,6 +69,13 @@ export default class NewAccount extends React.Component{
         placeholder='Height'
         errorStyle={{ color: 'red' }}
         errorMessage='Check the height and try again'
+        onChangeText={val => this.onChangeText('height', val)}
+      />
+
+      <RadioForm
+        radio_props={height_props}
+        initial={0}
+        onPress={(value) => {this.setState({value:value})}}
       />
 
       <Text h3>Enter gender:</Text> 
@@ -42,13 +91,11 @@ export default class NewAccount extends React.Component{
               justifyContent: 'flex-start'
           }}
           dropDownStyle={{backgroundColor: '#fafafa'}}
-          onChangeItem={item => this.setState({
-              gender: item.value
-          })}
+          onChangeItem={(value) => {this.setState({value:value})}}
       />
 
       <Button title='Continue' raised onPress= {
-        () => {this.props.navigation.navigate('SetGoal', {name: 'Set Goal'})}
+        () => {this.checkUserInput()}
       }/>
     </View>
     )

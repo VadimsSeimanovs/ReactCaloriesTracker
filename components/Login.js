@@ -13,20 +13,19 @@ export default class Login extends React.Component {
 
   onChangeText = (key, val) => {
     this.setState({ [key]: val })
-    //console.log({ [key]: val})
   }
 
   checkUserInput = () => {
     if(this.state.email != ''){
       if(this.state.password != '')
         FirebaseTest.init();
-        if(FirebaseTest.signInUser(this.state.email, this.state.password) == true){
-            his.props.navigation.navigate('Dashboard');
+        FirebaseTest.signInUser(this.state.email, this.state.password);
+        console.log(FirebaseTest.getUserExistance());
+        if(FirebaseTest.getUserExistance() == true){
+            this.props.navigation.navigate('Dashboard');
         }
-        console.log("test", FirebaseTest.signInUser(this.state.email, this.state.password));
-    }
-    else{
-     alert('Enter email address and password')
+    }else{
+     alert('Enter email address and password');
     }
   }
 
