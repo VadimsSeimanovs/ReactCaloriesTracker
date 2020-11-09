@@ -2,6 +2,7 @@ import React from 'react';
 import { View } from 'react-native';
 import { Text, Input, Button } from 'react-native-elements'
 import RadioForm from 'react-native-simple-radio-button';
+import User from './User';
 
 var choice_props = [
   {label: 'Lose weight', value: 0 },
@@ -19,9 +20,14 @@ export default class SetGoal extends React.Component {
     goalWeight: '',
     goalType: ''
   }
+
+  onChangeText = (key, val) => {
+    this.setState({ [key]: val })
+    //console.log({ [key]: val });
+  }
   
   checkUserInput = () =>{
-
+    this.props.navigation.navigate('Signup2');
   }
     render(){
         return (
@@ -47,7 +53,7 @@ export default class SetGoal extends React.Component {
       />
 
       <Button title='Continue' raised onPress= {
-        () => {this.props.navigation.navigate('Signup2')}
+        () => {this.checkUserInput()}
       }/>
     </View>
   );

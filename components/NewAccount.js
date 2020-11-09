@@ -4,6 +4,8 @@ import { Text, Input, Button } from 'react-native-elements'
 import DropDownPicker from 'react-native-dropdown-picker';
 import Icon from 'react-native-vector-icons/FontAwesome';
 import RadioForm from 'react-native-simple-radio-button';
+import FirebaseTest from './FirebaseTest';
+import User from './User';
 
 var weight_props = [
   {label: 'Kg', value: 0 },
@@ -28,15 +30,21 @@ export default class NewAccount extends React.Component{
 
   onChangeText = (key, val) => {
     this.setState({ [key]: val })
-    console.log({ [key]: val });
+    //console.log({ [key]: val });
   }
 
   checkUserInput = () => {
-    //here we check if the age is valid so not 200 years old
-    // check if the weight is correct 
-    //check if theheight is entered and its correct format
-    //check if the gender is correct
-    this.props.navigation.navigate('SetGoal', {name: 'Set Goal'})
+    if(this.state.age != '' && this.state.weight != '' && this.state.height != ''){
+        FirebaseTest.init();
+        User.init();
+        User.setAge(this.state.age);
+        User.setWeight(this.state.weight);
+        User.setWeightType(this.state.weightType);
+        User.setHeight(this.state.height);
+        User.setHeightType(this.state.heightType);
+        User.setGender(this.state.gender);
+        this.props.navigation.navigate('SetGoal', {name: 'Set Goal'});
+    }
   }
 
   render(){
