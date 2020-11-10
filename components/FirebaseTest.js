@@ -75,13 +75,26 @@ export default class FirebaseTest {
     });
   }
 
-  static insertData(userEmail, userWeight, userWeightType, userHeight, ){
-    var usersRef = ref.child("users");
-    usersRef.set({
-      userEmail:{
-
-      }
-    })
+  static insertData(userWeight, userWeightType, userHeight, userHeightType, userAge, userGender, userName){
+    //let user = firebase.auth().currentUser;
+    //let uid = user.uid;
+    let data = {
+      name: userName,
+      age: userAge,
+      weight: userWeight,
+      weightType: userWeightType,
+      height: userHeight,
+      heightType: userHeightType,
+      gender: userGender
+    }
+    console.log(data);
+    // firebase.database().ref('users').child(uid).set(data)
+    // .then((data) => {
+    //   console.log('Saved Data', data)
+    // })
+    // .catch((error) => {
+    //   console.log('Storing Error', error)
+    // })
   }
 
   static sendEmailAddress(userEmail){

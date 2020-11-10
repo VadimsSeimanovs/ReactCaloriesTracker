@@ -27,7 +27,11 @@ export default class SetGoal extends React.Component {
   }
   
   checkUserInput = () =>{
-    this.props.navigation.navigate('Signup2');
+    if(this.state.goalWeight != ''){
+      User.setGoalWeight(this.state.goalWeight);
+      User.setGoalWeightType(this.state.goalType);
+      this.props.navigation.navigate('Signup2');
+    }
   }
     render(){
         return (
@@ -43,6 +47,7 @@ export default class SetGoal extends React.Component {
         placeholder='Weight'
         errorStyle={{ color: 'red' }}
         errorMessage='Check the weight and try again'
+        onChangeText={val => this.onChangeText('goalWeight', val)}
       />
 
       <Text h3>Type weight:</Text>

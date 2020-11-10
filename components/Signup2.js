@@ -1,6 +1,8 @@
 import React from 'react';
 import { View } from 'react-native';
 import { Text, Input, Button } from 'react-native-elements'
+import User from './User'
+import FirebaseTest from './FirebaseTest'
 
 export default class Signup2 extends React.Component {
   state = {
@@ -15,12 +17,14 @@ export default class Signup2 extends React.Component {
   }
 
   checkUserInput = () => {
-    this.props.navigation.navigate('Dashboard')
+    if(this.state.name != '' && this.state.email != '' && this.state.password != '' && this.state.confirmPassword != ''){
+      User.setName(this.state.name);
+      User.setEmail(this.state.email);
+      User.setPassword(this.state);
+      this.props.navigation.navigate('Dashboard');
+      console.log(FirebaseTest.insertData(User.getWeight(), User.getWeightType(), User.getHeight(), User.getHeightType(), User.getAge(), User.getGender(), User.getName()));
+    }
   } 
-
-  registerUser = () => {
-
-  }
   
   render(){
       return (
