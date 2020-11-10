@@ -24,7 +24,7 @@ export default class Signup2 extends React.Component {
       this.props.navigation.navigate('Dashboard');
       console.log(FirebaseTest.insertData(User.getWeight(), User.getWeightType(), User.getHeight(), User.getHeightType(), User.getAge(), User.getGender(), User.getName()));
     }
-  } 
+  }
   
   render(){
       return (
