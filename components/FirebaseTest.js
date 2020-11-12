@@ -1,6 +1,4 @@
-import { useGestureHandlerRef } from '@react-navigation/stack';
 import * as firebase from 'firebase'
-import User from './User'
 
 const firebaseConfig = {
 apiKey: "AIzaSyBhDP0hjvwTeDtWhPK5TwxsoX35qRj92yk",
@@ -75,7 +73,7 @@ export default class FirebaseTest {
     });
   }
 
-  static insertData(userWeight, userWeightType, userHeight, userHeightType, userAge, userGender, userName){
+  static insertData(userWeight, userWeightType, userHeight, userHeightType, userAge, userGender, userName, userGoalWeight, userGoalWeightType, userGoal, userEmail, userPassword){
     //let user = firebase.auth().currentUser;
     //let uid = user.uid;
     let data = {
@@ -85,7 +83,12 @@ export default class FirebaseTest {
       weightType: userWeightType,
       height: userHeight,
       heightType: userHeightType,
-      gender: userGender
+      gender: userGender,
+      goalWeight: userGoalWeight,
+      goalWeightType: userGoalWeightType,
+      goal: userGoal,
+      email: userEmail,
+      password: userPassword
     }
     console.log(data);
     // firebase.database().ref('users').child(uid).set(data)

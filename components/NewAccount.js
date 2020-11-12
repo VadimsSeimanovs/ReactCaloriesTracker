@@ -8,13 +8,13 @@ import FirebaseTest from './FirebaseTest';
 import User from './User';
 
 var weight_props = [
-  {label: 'Kg', value: 0 },
-  {label: 'Oz', value: 1 }
+  {label: 'Kg', value: 'Kg' },
+  {label: 'Oz', value: 'Oz' }
 ];
 
 var height_props = [
-  {label: 'Meters', value: 0},
-  {label: 'Foot', value: 1}
+  {label: 'Meters', value: 'Meters'},
+  {label: 'Foot', value: 'Foot' }
 ];
 
 export default class NewAccount extends React.Component{
@@ -22,15 +22,14 @@ export default class NewAccount extends React.Component{
   state = {
     age: '',
     weight: '',
-    weightType: '',
+    weightType: 'Kg',
     height: '',
-    heightType: '',
-    gender: ''
+    heightType: 'Meters',
+    gender: 'female'
   }
 
   onChangeText = (key, val) => {
     this.setState({ [key]: val })
-    //console.log({ [key]: val });
   }
 
   checkUserInput = () => {
@@ -69,7 +68,7 @@ export default class NewAccount extends React.Component{
       <RadioForm
         radio_props={weight_props}
         initial={0}
-        onPress={(value) => {this.setState({value:value})}}
+        onPress={(value) => {this.setState({weightType:value})}}
       />
 
       <Text h3>Enter height:</Text>
@@ -83,7 +82,7 @@ export default class NewAccount extends React.Component{
       <RadioForm
         radio_props={height_props}
         initial={0}
-        onPress={(value) => {this.setState({value:value})}}
+        onPress={(value) => {this.setState({heightType:value})}}
       />
 
       <Text h3>Enter gender:</Text> 
@@ -92,14 +91,14 @@ export default class NewAccount extends React.Component{
               {label: 'Female', value: 'female', icon: () => <Icon name="female" size={18} color="#900" />},
               {label: 'Male', value: 'male', icon: () => <Icon name="male" size={18} color="#900" />},
           ]}
-          defaultValue='female'
+          defaultValue={this.state.gender}
           containerStyle={{height: 40}}
           style={{backgroundColor: '#fafafa'}}
           itemStyle={{
               justifyContent: 'flex-start'
           }}
           dropDownStyle={{backgroundColor: '#fafafa'}}
-          onChangeItem={(value) => {this.setState({value:value})}}
+          onChangeItem={(value) => {this.setState({gender:value.value})}}
       />
 
       <Button title='Continue' raised onPress= {

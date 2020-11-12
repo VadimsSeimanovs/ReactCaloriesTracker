@@ -18,11 +18,13 @@ export default class Signup2 extends React.Component {
 
   checkUserInput = () => {
     if(this.state.name != '' && this.state.email != '' && this.state.password != '' && this.state.confirmPassword != ''){
+      //Check if the email is valid
+      //Check if the password matches with the confirm password. ()
       User.setName(this.state.name);
       User.setEmail(this.state.email);
-      User.setPassword(this.state);
+      User.setPassword(this.state.password);
       this.props.navigation.navigate('Dashboard');
-      console.log(FirebaseTest.insertData(User.getWeight(), User.getWeightType(), User.getHeight(), User.getHeightType(), User.getAge(), User.getGender(), User.getName()));
+      FirebaseTest.insertData(User.getWeight(), User.getWeightType(), User.getHeight(), User.getHeightType(), User.getAge(), User.getGender(), User.getName(), User.getGoalWeight(), User.getGoalWeightType(), User.getGoal(), User.getEmail(), User.getPassword());
     }
   }
   

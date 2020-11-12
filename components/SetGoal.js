@@ -5,20 +5,21 @@ import RadioForm from 'react-native-simple-radio-button';
 import User from './User';
 
 var choice_props = [
-  {label: 'Lose weight', value: 0 },
-  {label: 'Gain weight', value: 1 }
+  {label: 'Lose weight', value: 'Lose weight' },
+  {label: 'Gain weight', value: 'Gain weight' }
 ];
 
 var weight_props = [
-  {label: 'Kg', value: 0 },
-  {label: 'Oz', value: 1 }
+  {label: 'Kg', value: 'Kg' },
+  {label: 'Oz', value: 'Oz' }
 ];
 
 export default class SetGoal extends React.Component {
 
   state = {
     goalWeight: '',
-    goalType: ''
+    goalType: 'Lose weight',
+    goalWeightType: 'Kg'
   }
 
   onChangeText = (key, val) => {
@@ -29,7 +30,8 @@ export default class SetGoal extends React.Component {
   checkUserInput = () =>{
     if(this.state.goalWeight != ''){
       User.setGoalWeight(this.state.goalWeight);
-      User.setGoalWeightType(this.state.goalType);
+      User.setGoalWeightType(this.state.goalWeightType);
+      User.setGoal(this.state.goalType);
       this.props.navigation.navigate('Signup2');
     }
   }
@@ -40,7 +42,7 @@ export default class SetGoal extends React.Component {
               <RadioForm
                 radio_props={choice_props}
                 initial={0}
-                onPress={(value) => {this.setState({value:value})}}
+                onPress={(value) => {this.setState({goalType:value})}}
               />
       <Text h3>How much weight do you want to lose/gain?</Text>
       <Input
@@ -54,7 +56,7 @@ export default class SetGoal extends React.Component {
         <RadioForm
         radio_props={weight_props}
         initial={0}
-        onPress={(value) => {this.setState({value:value})}}
+        onPress={(value) => {this.setState({goalWeightType:value})}}
       />
 
       <Button title='Continue' raised onPress= {
