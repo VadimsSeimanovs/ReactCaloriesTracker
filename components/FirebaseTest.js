@@ -23,21 +23,36 @@ const actionCodeSettings = {
 var databaseExists = false;
 var userExists = true;
 
+let uid;
+
 export default class FirebaseTest {
     //static auth;
     static init(){
       if(databaseExists == false){
         firebase.initializeApp(firebaseConfig);
         databaseExists = true;
-        console.log(databaseExists);
+        // console.log(databaseExists);
       }else{
-        console.log(databaseExists);
+        // console.log(databaseExists);
         return;
       }
     }
 
+    static setUid(uid2) {
+      uid = uid2;
+    }
+
+    static getUid(){
+      return uid;
+    }
+
    static registerUser(userEmail, userPassword) {
-    firebase.auth().createUserWithEmailAndPassword(userEmail, userPassword).catch(function(error){
+    firebase.auth().createUserWithEmailAndPassword(userEmail, userPassword)
+    .then(function(data){
+      this.setUid(data.user.uid);
+      console.log("Test 2: ", this.getUid());
+    })
+    .catch(function(error){
       var errorCode = error.code;
       var errorMessage = error.message;
       if (errorCode == 'auth/weak-password') {
@@ -74,8 +89,7 @@ export default class FirebaseTest {
   }
 
   static insertData(userWeight, userWeightType, userHeight, userHeightType, userAge, userGender, userName, userGoalWeight, userGoalWeightType, userGoal, userEmail, userPassword){
-    //let user = firebase.auth().currentUser;
-    //let uid = user.uid;
+
     let data = {
       name: userName,
       age: userAge,
@@ -90,7 +104,8 @@ export default class FirebaseTest {
       email: userEmail,
       password: userPassword
     }
-    console.log(data);
+
+    console.log("Test: ", this.getUid());
     // firebase.database().ref('users').child(uid).set(data)
     // .then((data) => {
     //   console.log('Saved Data', data)
