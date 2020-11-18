@@ -2,7 +2,7 @@ import { StatusBar } from 'expo-status-bar';
 import React from 'react';
 import { Alert, View } from 'react-native';
 import { Input, Button, Text } from 'react-native-elements'
-import FirebaseTest from './FirebaseTest'
+import UserProvider from './FirebaseTest'
 
 export default class Login extends React.Component {
 
@@ -18,10 +18,10 @@ export default class Login extends React.Component {
   checkUserInput = () => {
     if(this.state.email != ''){
       if(this.state.password != '')
-        FirebaseTest.init();
-        FirebaseTest.signInUser(this.state.email, this.state.password);
-        console.log(FirebaseTest.getUserExistance());
-        if(FirebaseTest.getUserExistance() == true){
+      UserProvider.init();
+      UserProvider.signInUser(this.state.email, this.state.password);
+        console.log(UserProvider.getUserExistance());
+        if(UserProvider.getUserExistance() == true){
             this.props.navigation.navigate('Dashboard');
         }
     }else{

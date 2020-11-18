@@ -12,7 +12,6 @@ appId: "1:651745419400:web:2d8a921ed15ef49372bf3d",
 measurementId: "G-WTE99C5XZ4"
 }
 
-
 const actionCodeSettings = {
   // URL you want to redirect back to. The domain (www.example.com) for this
   // URL must be in the authorized domains list in the Firebase Console.
@@ -25,7 +24,13 @@ const actionCodeSettings = {
 var databaseExists = false;
 var userExists = true;
 
-export default class FirebaseTest extends Component{
+//export const UserContext = createContext({ user: null });
+
+class UserProvider extends React.Component{
+  state = {
+    user: null
+  };
+
     //static auth;
     static init(){
       if(databaseExists == false){
@@ -38,7 +43,7 @@ export default class FirebaseTest extends Component{
       }
     }
 
-   static registerUser(userEmail, userPassword) {
+   static async registerUser(userEmail, userPassword){
     firebase.auth().createUserWithEmailAndPassword(userEmail, userPassword)
     .catch(function(error){
       var errorCode = error.code;
@@ -66,7 +71,7 @@ export default class FirebaseTest extends Component{
     });
   }
 
-  static getUserDetails () {
+  static getUserDetails(){
     // firebase.database().ref('users').once('value', (data) => {
     //   console.log(data.toJSON());
     // })
@@ -76,8 +81,7 @@ export default class FirebaseTest extends Component{
     });
   }
 
-  static insertData(userWeight, userWeightType, userHeight, userHeightType, userAge, userGender, userName, userGoalWeight, userGoalWeightType, userGoal, userEmail, userPassword){
-
+  static async insertData(userWeight, userWeightType, userHeight, userHeightType, userAge, userGender, userName, userGoalWeight, userGoalWeightType, userGoal, userEmail, userPassword){
     let data = {
       name: userName,
       age: userAge,
@@ -92,6 +96,8 @@ export default class FirebaseTest extends Component{
       email: userEmail,
       password: userPassword
     }
+
+    //console.log(localStorage.getItem('user'));
 
     // firebase.database().ref('users').child(User.getUid()).set(data)
     // .then((data) => {
@@ -115,17 +121,21 @@ export default class FirebaseTest extends Component{
     return userExists;
   }
 
-  static authListener(){
-    firebase.auth().onAuthStateChanged((user) => {
-      console.log(user);
-      if(user){
-        this.setState({ user });
+  static async authListener(){
+    //What happens if the two users register at the same time??
+    firebase.auth().onAuthStateChanged(async userAuth => {
+      //console.log(user);
+      if(userAuth){
+        this.setState({ user: userAuth });
         localStorage.setItem('user', user.uid);
+        //console.log("Test:" + localStorage.getItem('user'));
       }else{
         this.setState({ user: null });
         localStorage.removeItem('user');
+        //console.log("Test failed.");
       }
-    })
+    });
   }
-
 }
+
+export default UserProvider;

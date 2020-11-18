@@ -4,7 +4,7 @@ import { Text, Input, Button } from 'react-native-elements'
 import DropDownPicker from 'react-native-dropdown-picker';
 import Icon from 'react-native-vector-icons/FontAwesome';
 import RadioForm from 'react-native-simple-radio-button';
-import FirebaseTest from './FirebaseTest';
+import UserProvider from './FirebaseTest';
 import User from './User';
 
 var weight_props = [
@@ -34,7 +34,7 @@ export default class NewAccount extends React.Component{
 
   checkUserInput = () => {
     if(this.state.age != '' && this.state.weight != '' && this.state.height != ''){
-        FirebaseTest.init();
+      UserProvider.init();
         User.init();
         User.setAge(this.state.age);
         User.setWeight(this.state.weight);

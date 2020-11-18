@@ -2,7 +2,7 @@ import React from 'react';
 import { View } from 'react-native';
 import { Text, Input, Button } from 'react-native-elements'
 import User from './User'
-import FirebaseTest from './FirebaseTest'
+import UserProvider from './FirebaseTest'
 
 var userRegistered = false;
 export default class Signup2 extends React.Component {
@@ -24,9 +24,9 @@ export default class Signup2 extends React.Component {
       User.setName(this.state.name);
       User.setEmail(this.state.email);
       User.setPassword(this.state.password);
-      FirebaseTest.registerUser(User.getEmail(), User.getPassword());
-      FirebaseTest.getUserUid(User.getEmail());
-      FirebaseTest.insertData(User.getWeight(), User.getWeightType(), User.getHeight(), User.getHeightType(), User.getAge(), User.getGender(), User.getName(), User.getGoalWeight(), User.getGoalWeightType(), User.getGoal(), User.getEmail(), User.getPassword());
+      UserProvider.registerUser(User.getEmail(), User.getPassword());
+      UserProvider.authListener();
+      UserProvider.insertData(User.getWeight(), User.getWeightType(), User.getHeight(), User.getHeightType(), User.getAge(), User.getGender(), User.getName(), User.getGoalWeight(), User.getGoalWeightType(), User.getGoal(), User.getEmail(), User.getPassword());
       this.props.navigation.navigate('Dashboard');
     }
   }
