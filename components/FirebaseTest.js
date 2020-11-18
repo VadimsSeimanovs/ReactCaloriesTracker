@@ -1,4 +1,5 @@
 import * as firebase from 'firebase'
+import React, { Component } from 'react';
 
 const firebaseConfig = {
 apiKey: "AIzaSyBhDP0hjvwTeDtWhPK5TwxsoX35qRj92yk",
@@ -10,6 +11,7 @@ messagingSenderId: "651745419400",
 appId: "1:651745419400:web:2d8a921ed15ef49372bf3d",
 measurementId: "G-WTE99C5XZ4"
 }
+
 
 const actionCodeSettings = {
   // URL you want to redirect back to. The domain (www.example.com) for this
@@ -23,9 +25,7 @@ const actionCodeSettings = {
 var databaseExists = false;
 var userExists = true;
 
-let uid;
-
-export default class FirebaseTest {
+export default class FirebaseTest extends Component{
     //static auth;
     static init(){
       if(databaseExists == false){
@@ -38,20 +38,8 @@ export default class FirebaseTest {
       }
     }
 
-    static setUid(uid2) {
-      uid = uid2;
-    }
-
-    static getUid(){
-      return uid;
-    }
-
    static registerUser(userEmail, userPassword) {
     firebase.auth().createUserWithEmailAndPassword(userEmail, userPassword)
-    .then(function(data){
-      this.setUid(data.user.uid);
-      console.log("Test 2: ", this.getUid());
-    })
     .catch(function(error){
       var errorCode = error.code;
       var errorMessage = error.message;
@@ -105,8 +93,7 @@ export default class FirebaseTest {
       password: userPassword
     }
 
-    console.log("Test: ", this.getUid());
-    // firebase.database().ref('users').child(uid).set(data)
+    // firebase.database().ref('users').child(User.getUid()).set(data)
     // .then((data) => {
     //   console.log('Saved Data', data)
     // })
@@ -127,4 +114,18 @@ export default class FirebaseTest {
   static getUserExistance(){
     return userExists;
   }
+
+  static authListener(){
+    firebase.auth().onAuthStateChanged((user) => {
+      console.log(user);
+      if(user){
+        this.setState({ user });
+        localStorage.setItem('user', user.uid);
+      }else{
+        this.setState({ user: null });
+        localStorage.removeItem('user');
+      }
+    })
+  }
+
 }

@@ -10,6 +10,7 @@ var weightType;
 var goal;
 var goalWeight;
 var goalWeightType;
+var uid;
 
 export default class User{
 
@@ -122,5 +123,13 @@ export default class User{
 
     static getGender(){
         return gender;
+    }
+
+    static setUid(userUid){
+        uid = userUid;
+    }
+
+    static getUid(){
+        return uid;
     }
 }
