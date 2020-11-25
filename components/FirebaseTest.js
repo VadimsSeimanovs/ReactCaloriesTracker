@@ -1,5 +1,5 @@
 import * as firebase from 'firebase'
-import React, { Component } from 'react';
+import { Component } from 'react';
 
 const firebaseConfig = {
 apiKey: "AIzaSyBhDP0hjvwTeDtWhPK5TwxsoX35qRj92yk",
@@ -13,9 +13,7 @@ measurementId: "G-WTE99C5XZ4"
 }
 
 const actionCodeSettings = {
-  // URL you want to redirect back to. The domain (www.example.com) for this
-  // URL must be in the authorized domains list in the Firebase Console.
-  // This must be true.
+  // This is for the emai confirmation.
   url: 'caloriestracker-26ff8.web.app',
   handleCodeInApp: true,
   dynamicLinkDomain: 'example.page.link'
@@ -26,11 +24,11 @@ var userExists = true;
 
 //export const UserContext = createContext({ user: null });
 
-class UserProvider extends React.Component{
+class UserProvider extends Component{
   state = {
-    user: null
+    currentUser: null,
+    isLoggedIn: null
   };
-
     //static auth;
     static init(){
       if(databaseExists == false){
@@ -81,7 +79,7 @@ class UserProvider extends React.Component{
     });
   }
 
-  static async insertData(userWeight, userWeightType, userHeight, userHeightType, userAge, userGender, userName, userGoalWeight, userGoalWeightType, userGoal, userEmail, userPassword){
+  static insertData(userWeight, userWeightType, userHeight, userHeightType, userAge, userGender, userName, userGoalWeight, userGoalWeightType, userGoal, userEmail, userPassword){
     let data = {
       name: userName,
       age: userAge,
@@ -121,21 +119,37 @@ class UserProvider extends React.Component{
     return userExists;
   }
 
-  static async authListener(){
+  static authListener(){
     //What happens if the two users register at the same time??
-    firebase.auth().onAuthStateChanged(async userAuth => {
-      //console.log(user);
-      if(userAuth){
-        this.setState({ user: userAuth });
-        localStorage.setItem('user', user.uid);
-        //console.log("Test:" + localStorage.getItem('user'));
-      }else{
-        this.setState({ user: null });
-        localStorage.removeItem('user');
-        //console.log("Test failed.");
-      }
+  firebase.auth().onAuthStateChanged(userAuth => {
+    if (userAuth) {
+    this.intervalId = setInterval(this.loadUser, 1000, userAuth.uid);
+    console.log(this.intervalId);
+    } else {
+      console.log("Test failed.")
+      //this.setState({ currentUser: null, isLoggedIn: false });
+    }
     });
   }
+
+  static async loadUser(userId) {
+    console.log(`Load user called. Number of retries: ${this.retries}`);
+    if (this.retries === 1) {
+      clearInterval(this.intervalId);
+    }
+    try {
+      const currentUser = await getUserDocument(userId);
+        if (currentUser.email) {
+          this.setState({ currentUser, isLoggedIn: true });
+          clearInterval(this.intervalId);
+        }
+    } catch (error) {
+      console.log(`Error logging the user in: ${error}`);
+      clearInterval(this.intervalId);
+    } finally {
+      this.retries -= 1;
+      }
+    }
 }
 
 export default UserProvider;

@@ -3,6 +3,7 @@ import React from 'react';
 import { Alert, View } from 'react-native';
 import { Input, Button, Text } from 'react-native-elements'
 import UserProvider from './FirebaseTest'
+import { BarcodeScanner } from './BarcodeScanner'
 
 export default class Login extends React.Component {
 
@@ -48,7 +49,7 @@ export default class Login extends React.Component {
             onChangeText={val=> this.onChangeText('password', val)}
           />
 
-          <Button title='Login' raised onPress = { () => this.checkUserInput()}></Button>
+          <Button title='Login' raised onPress = { () => this.props.navigate.navigate('BarcodeScanner')} />
 
           <Button title='Forgot password' type='clear' onPress = {
             () => {this.props.navigation.navigate('ForgotPassword')}

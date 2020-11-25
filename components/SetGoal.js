@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { Component } from 'react';
 import { View } from 'react-native';
 import { Text, Input, Button } from 'react-native-elements'
 import RadioForm from 'react-native-simple-radio-button';
@@ -14,7 +14,7 @@ var weight_props = [
   {label: 'Oz', value: 'Oz' }
 ];
 
-export default class SetGoal extends React.Component {
+export default class SetGoal extends Component {
 
   state = {
     goalWeight: '',

@@ -11,6 +11,7 @@ import Signup2 from './components/Signup2';
 import { createBottomTabNavigator } from "@react-navigation/bottom-tabs";
 import Splash from './components/Splash';
 import { AuthContext } from './components/AuthContext';
+import { BarcodeScanner } from './components/BarcodeScanner';
 
 const AuthStack = createStackNavigator();
 const AuthStackScreen = () => (
@@ -42,6 +43,10 @@ const AuthStackScreen = () => (
     <AuthStack.Screen
       name="SetGoal"
       component={SetGoal}
+      />
+    <AuthStack.Screen
+      name="BarcodeScanner"
+      component={BarcodeScanner}
       />
   </AuthStack.Navigator>
 );

@@ -1,3 +1,4 @@
+import { Component } from "react";
 
 var email;
 var password;
@@ -12,7 +13,7 @@ var goalWeight;
 var goalWeightType;
 var uid;
 
-export default class User{
+export default class User extends Component{
 
     static init(){
         email = '';

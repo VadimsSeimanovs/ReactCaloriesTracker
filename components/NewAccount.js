@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { Component } from 'react';
 import { View } from 'react-native';
 import { Text, Input, Button } from 'react-native-elements'
 import DropDownPicker from 'react-native-dropdown-picker';
@@ -17,7 +17,7 @@ var height_props = [
   {label: 'Foot', value: 'Foot' }
 ];
 
-export default class NewAccount extends React.Component{
+export default class NewAccount extends Component{
 
   state = {
     age: '',
