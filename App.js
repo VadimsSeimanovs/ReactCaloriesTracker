@@ -11,7 +11,7 @@ import Signup2 from './components/Signup2';
 import { createBottomTabNavigator } from "@react-navigation/bottom-tabs";
 import Splash from './components/Splash';
 import { AuthContext } from './components/AuthContext';
-import { BarcodeScanner } from './components/BarcodeScanner';
+import BarcodeScanner from './components/BarcodeScanner';
 
 const AuthStack = createStackNavigator();
 const AuthStackScreen = () => (
@@ -123,6 +123,6 @@ export default () => {
         <NavigationContainer>
             <RootStackScreen userToken={userToken}/>
         </NavigationContainer>
-      </AuthContext.Provider >
+      </AuthContext.Provider>
     );
 };
