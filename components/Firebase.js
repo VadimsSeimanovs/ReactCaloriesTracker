@@ -150,6 +150,43 @@ class UserProvider extends Component{
       this.retries -= 1;
       }
     }
+
+  static insertItem(itemBarcode, itemName, itemEnergy, itemFat, itemCarbs, itemSugar, itemFiber, itemProtein, itemSalt){
+    let data = {
+      barcode: itemBarcode,
+      name: itemName,
+      energy: itemEnergy,
+      fat: itemFat,
+      carbs: itemCarbs,
+      sugar: itemSugar,
+      fiber: itemFiber,
+      protein: itemProtein,
+      salt: itemSalt
+    }    
+
+    firebase.database().ref('items').child(itemBarcode).set(data)
+    .then((data) => {
+      console.log('Saved Data', data)
+    })
+    .catch((error) => {
+      console.log('Storing Error', error)
+    })
+  }
+
+  static getItem(props){
+    var ref = firebase.database().ref('items');
+    ref.on("value", snapshot => {
+      let storiesObj = snapshot.val();
+      storiesObj
+      .child(props.match.params.id)
+      .then(() => ref.once("value"))
+      .then(snapshot => snapshot.val())
+      .catch(error => ({
+         errorCode: error.code,
+         errorMessage: error.message
+       }));
+    });
+  }
 }
 
 export default UserProvider;

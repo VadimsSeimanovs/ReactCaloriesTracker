@@ -2,7 +2,7 @@ import { StatusBar } from 'expo-status-bar';
 import React from 'react';
 import { Alert, View } from 'react-native';
 import { Input, Button, Text } from 'react-native-elements'
-import UserProvider from './FirebaseTest'
+import UserProvider from './Firebase'
 
 export default class Login extends React.Component {
 
@@ -22,8 +22,10 @@ export default class Login extends React.Component {
       UserProvider.signInUser(this.state.email, this.state.password);
         console.log(UserProvider.getUserExistance());
         if(UserProvider.getUserExistance() == true){
-            this.props.navigation.navigate('Dashboard');
+            this.props.navigation.navigate('BarcodeScanner');
+            //Here fill the user class with the user details, pass this information to the dashboard
         }
+
     }else{
      alert('Enter email address and password');
     }

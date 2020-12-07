@@ -4,7 +4,7 @@ import { Text, Input, Button } from 'react-native-elements'
 import DropDownPicker from 'react-native-dropdown-picker';
 import Icon from 'react-native-vector-icons/FontAwesome';
 import RadioForm from 'react-native-simple-radio-button';
-import UserProvider from './FirebaseTest';
+import UserProvider from './Firebase';
 import User from './User';
 
 var weight_props = [

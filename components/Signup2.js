@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import { View } from 'react-native';
 import { Text, Input, Button } from 'react-native-elements'
 import User from './User'
-import UserProvider from './FirebaseTest'
+import UserProvider from './Firebase'
 
 var userRegistered = false;
 export default class Signup2 extends Component {
