@@ -176,6 +176,9 @@ class UserProvider extends Component{
   static getItem(props){
     var ref = firebase.database().ref('items');
     ref.on("value", snapshot => {
+      if(snapshot.val() == null){
+        return;
+      }else{
       let storiesObj = snapshot.val();
       storiesObj
       .child(props.match.params.id)
@@ -185,6 +188,7 @@ class UserProvider extends Component{
          errorCode: error.code,
          errorMessage: error.message
        }));
+      }
     });
   }
 }
