@@ -36,6 +36,7 @@ export default class Login extends React.Component {
       <View style={styles.container}>
           <Text style={styles.textInputLabel} h3>Email Address:</Text>
           <Input style={styles.textInput}
+            placeholderTextColor='#707070'
             placeholder='Email Address'
             errorStyle={{ color: 'red' }}
             // errorMessage='Check the email address and try again'
@@ -44,6 +45,7 @@ export default class Login extends React.Component {
 
           <Text style={styles.textInputLabel} h3>{'\n'}Password:</Text>
           <Input style={styles.textInput}
+            placeholderTextColor='#707070'
             placeholder='Password'
             errorStyle={{ color: 'red' }}
             // errorMessage='Check the password and try again'
@@ -55,13 +57,19 @@ export default class Login extends React.Component {
             buttonStyle={{backgroundColor: '#0F2080'}}
           />
 
-          <Button title='Forgot password' type='clear' onPress = {
-            () => {this.props.navigation.navigate('ForgotPassword')}
-          } />
+          <View style={{marginTop:20}}></View>
 
-          <Button title='Dont have an account? Sign up' type='clear' raised onPress = {
-            () => {this.props.navigation.navigate('NewAccount')}
-          } />
+          <Button title='Forgot password' raised onPress = {
+            () => this.props.navigation.navigate('ForgotPassword')}
+            buttonStyle={{backgroundColor:'#0F2080'}}
+          />
+
+          <View style={{marginTop:20}}></View>
+
+          <Button title='Dont have an account? Sign up' raised onPress = {
+            () => this.props.navigation.navigate('NewAccount')}
+            buttonStyle={{backgroundColor:'#0F2080'}}
+          />
           <StatusBar style="auto" />
       </View>
   );
