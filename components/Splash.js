@@ -1,6 +1,6 @@
 import React from 'react';
 import { View, StyleSheet } from 'react-native';
-import { Text, Input, Button} from 'react-native-elements'
+import { Text } from 'react-native-elements'
 
 export default class VerifyCode extends React.Component {
     render(){

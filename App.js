@@ -5,13 +5,21 @@ import ForgotPassword from './components/ForgotPassword';
 import VerifyCode from './components/VerifyCode';
 import NewAccount from './components/NewAccount';
 import { createStackNavigator } from '@react-navigation/stack';
-import { NavigationContainer } from '@react-navigation/native';
+import { NavigationContainer, DefaultTheme } from '@react-navigation/native';
 import SetGoal from './components/SetGoal';
 import Signup2 from './components/Signup2';
 import { createBottomTabNavigator } from "@react-navigation/bottom-tabs";
 import Splash from './components/Splash';
 import { AuthContext } from './components/AuthContext';
 import BarcodeScanner from './components/BarcodeScanner';
+
+const MyTheme = {
+  ...DefaultTheme,
+  colors: {
+    ...DefaultTheme.colors,
+    background: '#85C0F9',
+  },
+};
 
 const AuthStack = createStackNavigator();
 const AuthStackScreen = () => (
@@ -120,7 +128,7 @@ export default () => {
     
     return ( 
       <AuthContext.Provider value={authContext}>
-        <NavigationContainer>
+        <NavigationContainer theme={MyTheme}>
             <RootStackScreen userToken={userToken}/>
         </NavigationContainer>
       </AuthContext.Provider>
