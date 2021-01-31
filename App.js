@@ -5,13 +5,14 @@ import ForgotPassword from './components/ForgotPassword';
 import VerifyCode from './components/VerifyCode';
 import NewAccount from './components/NewAccount';
 import { createStackNavigator } from '@react-navigation/stack';
-import { NavigationContainer, DefaultTheme } from '@react-navigation/native';
+import { NavigationContainer, DefaultTheme, useRoute } from '@react-navigation/native';
 import SetGoal from './components/SetGoal';
 import Signup2 from './components/Signup2';
 import { createBottomTabNavigator } from "@react-navigation/bottom-tabs";
 import Splash from './components/Splash';
 import { AuthContext } from './components/AuthContext';
 import BarcodeScanner from './components/BarcodeScanner';
+import AddItem from './components/AddItem';
 
 const MyTheme = {
   ...DefaultTheme,
@@ -21,6 +22,7 @@ const MyTheme = {
   },
 };
 
+const IsLoggedIn = true;
 const AuthStack = createStackNavigator();
 const AuthStackScreen = () => (
   <AuthStack.Navigator>
@@ -56,6 +58,11 @@ const AuthStackScreen = () => (
       name="BarcodeScanner"
       component={BarcodeScanner}
       />
+
+    <AuthStack.Screen
+      name="AddItem"
+      component={AddItem}
+      />
   </AuthStack.Navigator>
 );
 
@@ -63,8 +70,8 @@ const Tabs = createBottomTabNavigator();
 
 const TabsScreen = () => (
   <Tabs.Navigator>
-    <Tabs.Screen name="Login" component={Login}/>
     <Tabs.Screen name="Dashboard" component={Dashboard}/>
+    <Tabs.Screen name="BarcodeScanner" component={BarcodeScanner}/>
     <Tabs.Screen name="SetGoal" component={SetGoal}/>
     {/* <Tabs.Screen name="Signup2" component={Signup2}/> */}
     <Tabs.Screen name="NewAccount" component={NewAccount}/>
@@ -97,8 +104,8 @@ const RootStack = createStackNavigator();
 
 export default () => {
     const [isLoading, setIsLoading] = React.useState(true);
-    const [userToken, setUserToken] = React.useState(null);
-    
+    const [userToken, setUserToken] = React.useState(null);    
+
     const authContext = React.useMemo(() => {
       return {
         signIn: () => {
@@ -125,11 +132,21 @@ export default () => {
     if (isLoading) {
       return <Splash/>;
     }
-    
+
+    if(IsLoggedIn){
+      return ( 
+        <AuthContext.Provider value={authContext}>
+          <NavigationContainer theme={MyTheme}>
+            <TabsScreen/>
+          </NavigationContainer>
+        </AuthContext.Provider>
+      );
+    }
+
     return ( 
       <AuthContext.Provider value={authContext}>
         <NavigationContainer theme={MyTheme}>
-            <RootStackScreen userToken={userToken}/>
+          <RootStackScreen userToken={userToken}/>
         </NavigationContainer>
       </AuthContext.Provider>
     );

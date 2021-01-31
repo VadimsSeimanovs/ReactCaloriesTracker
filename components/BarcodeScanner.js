@@ -3,7 +3,6 @@ import { useState, useEffect } from 'react';
 import { Text, View, StyleSheet, Button } from 'react-native';
 import { BarCodeScanner } from 'expo-barcode-scanner';
 import UserProvider from './Firebase';
-import User from './User';
 
 export default function BarcodeScanner(){
     const [hasPermission, setHasPermission] = useState(null);
@@ -48,7 +47,9 @@ export default function BarcodeScanner(){
         />
 
         {scanned && <Button title={'Tap to Scan Again'} onPress={() => setScanned(false)} />}
-        {notExists && <Button title={'Add new Item'} onPress={ () => setExistance(false)} />}
+        {notExists && <Button title={'Add new Item'} onPress = { 
+            () => this.props.navigation.navigate('Dashboard')} />}
+        {/* onPress={ () => setExistance(false)}  */}
     </View>
     );
 }

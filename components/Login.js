@@ -53,11 +53,11 @@ export default class Login extends React.Component {
           />
 
           <Button title='Login' raised onPress = { 
-            () => this.props.navigation.navigate('BarcodeScanner')} 
+            () => this.props.navigation.navigate('Dashboard')} 
             buttonStyle={{backgroundColor: '#0F2080'}}
           />
 
-          <View style={{marginTop:20}}></View>
+          <View style={styles.spaceBetweenButtons}></View>
 
           <Button title='Forgot password' raised onPress = {
             () => this.props.navigation.navigate('ForgotPassword')}

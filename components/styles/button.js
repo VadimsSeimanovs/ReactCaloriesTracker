@@ -8,6 +8,9 @@ const styles = StyleSheet.create({
         marginRight: 20,
         justifyContent: 'space-between'
     },
+    spaceBetweenButtons:{
+        marginTop: 20
+    },
     textInputLabel:{
         marginLeft: 'auto',
         marginRight: 'auto',
