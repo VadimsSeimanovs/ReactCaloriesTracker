@@ -1,6 +1,7 @@
 import * as React from 'react';
 import { useState, useEffect } from 'react';
-import { Text, View, StyleSheet, Button } from 'react-native';
+import { Text, View, StyleSheet } from 'react-native';
+import { Button } from 'react-native-elements'
 import { BarCodeScanner } from 'expo-barcode-scanner';
 import UserProvider from './Firebase';
 
@@ -22,6 +23,7 @@ export default function BarcodeScanner(){
         if(UserProvider.getItem(data) == null){
           setExistance(true);
           alert(`Item not found, please add the item to the database`);
+         
         }
         alert(`Bar code with type ${type} and data ${data} has been scanned!`);
       };
@@ -46,9 +48,9 @@ export default function BarcodeScanner(){
         style={StyleSheet.absoluteFillObject}
         />
 
-        {scanned && <Button title={'Tap to Scan Again'} onPress={() => setScanned(false)} />}
-        {notExists && <Button title={'Add new Item'} onPress = { 
-            () => this.props.navigation.navigate('Dashboard')} />}
+        {scanned && <Button title={'Tap to Scan Again'} clear onPress={() => setScanned(false)} />}
+        {scanned && <Button title={'Add new Item'} clear 
+        onPress = {() => {navigation.navigate("AddItems")}}/>}
         {/* onPress={ () => setExistance(false)}  */}
     </View>
     );

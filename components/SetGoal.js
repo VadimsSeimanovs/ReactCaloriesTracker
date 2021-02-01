@@ -44,24 +44,25 @@ export default class SetGoal extends Component {
                 initial={0}
                 onPress={(value) => {this.setState({goalType:value})}}
               />
-      <Text h3>How much weight do you want to lose/gain?</Text>
-      <Input
-        placeholder='Weight'
-        errorStyle={{ color: 'red' }}
-        errorMessage='Check the weight and try again'
-        onChangeText={val => this.onChangeText('goalWeight', val)}
-      />
 
-      <Text h3>Type weight:</Text>
-        <RadioForm
-        radio_props={weight_props}
-        initial={0}
-        onPress={(value) => {this.setState({goalWeightType:value})}}
-      />
+              <Text h3>How much weight do you want to lose/gain?</Text>
+              <Input
+                placeholder='Weight'
+                errorStyle={{ color: 'red' }}
+                errorMessage='Check the weight and try again'
+                onChangeText={val => this.onChangeText('goalWeight', val)}
+              />
 
-      <Button title='Continue' raised onPress= {
-        () => {this.checkUserInput()}
-      }/>
+              <Text h3>Type weight:</Text>
+                <RadioForm
+                radio_props={weight_props}
+                initial={0}
+                onPress={(value) => {this.setState({goalWeightType:value})}}
+              />
+
+              <Button title='Continue' raised onPress= {
+                () => {this.checkUserInput()}
+              }/>
     </View>
   );
 }

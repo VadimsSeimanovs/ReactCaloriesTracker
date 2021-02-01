@@ -44,6 +44,12 @@ export default class Dashboard extends React.Component {
               />
 
               <View style={{marginTop:100}}/>
+
+              <Button title='Barcode scanner' onPress = { 
+                () => this.props.navigation.navigate('BarcodeScanner')} 
+                style={{backgroundColor:'#C2DFFB'}}
+                buttonStyle={{backgroundColor:'#0F2080'}, {width:150}, {alignSelf:'flex-end'}}
+              />
             </View>
         );
     }

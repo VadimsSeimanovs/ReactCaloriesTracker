@@ -70,7 +70,7 @@ const Tabs = createBottomTabNavigator();
 
 const TabsScreen = () => (
   <Tabs.Navigator>
-    <Tabs.Screen name="Dashboard" component={Dashboard}/>
+    {/* <Tabs.Screen name="Dashboard" component={Dashboard}/> */}
     <Tabs.Screen name="BarcodeScanner" component={BarcodeScanner}/>
     <Tabs.Screen name="SetGoal" component={SetGoal}/>
     {/* <Tabs.Screen name="Signup2" component={Signup2}/> */}
@@ -133,7 +133,7 @@ export default () => {
       return <Splash/>;
     }
 
-    if(IsLoggedIn){
+    if(!IsLoggedIn){
       return ( 
         <AuthContext.Provider value={authContext}>
           <NavigationContainer theme={MyTheme}>
