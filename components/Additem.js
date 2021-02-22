@@ -1,6 +1,7 @@
 import { StatusBar } from 'expo-status-bar';
 import React from 'react';
 import { View } from 'react-native';
+import { SafeAreaView, ScrollView, } from 'react-native';
 import { Input, Button, Text } from 'react-native-elements'
 import styles  from './styles/button'
 
@@ -12,7 +13,9 @@ export default class AddItem extends React.Component {
 
   render(){
     return (
-      <View style={styles.container}>
+      <ScrollView>
+          <Text h2 style={styles.textInputLabel}>Add Item</Text>
+          <View style={styles.spaceBetweenButtons}></View>
         <Input style={styles.textInput}
             placeholderTextColor='#707070'
             placeholder='Item name'
@@ -85,7 +88,7 @@ export default class AddItem extends React.Component {
             buttonStyle={{backgroundColor: '#0F2080'}}
         />
           <StatusBar style="auto" />
-      </View>
+      </ScrollView>
   );
 }
 }

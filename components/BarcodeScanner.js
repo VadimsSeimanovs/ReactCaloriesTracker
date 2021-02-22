@@ -53,7 +53,7 @@ export default class BarcodeScanner extends React.Component{
             style={StyleSheet.absoluteFill}
           />
           
-          <Button title={'Add new Item'} clear 
+          <Button title={'Add New Item'} clear 
             onPress = {() => {this.props.navigation.navigate("AddItem")}}
           />
 

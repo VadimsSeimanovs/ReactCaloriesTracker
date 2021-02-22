@@ -13,6 +13,9 @@ import Splash from './components/Splash';
 import { AuthContext } from './components/AuthContext';
 import BarcodeScanner from './components/BarcodeScanner';
 import AddItem from './components/AddItem';
+import LogFood from './components/LogFood'
+import SearchFood from './components/SearchFood';
+import FoodInformation from './components/FoodInformation'
 
 const MyTheme = {
   ...DefaultTheme,
@@ -58,11 +61,26 @@ const AuthStackScreen = () => (
       name="BarcodeScanner"
       component={BarcodeScanner}
       />
-
     <AuthStack.Screen
       name="AddItem"
       component={AddItem}
       />
+
+    <AuthStack.Screen
+      name="LogFood"
+      component={LogFood}
+      />
+
+    <AuthStack.Screen
+      name="SearchFood"
+      component={SearchFood}
+    />
+
+    <AuthStack.Screen
+      name="FoodInformation"
+      component={FoodInformation}
+      />
+
   </AuthStack.Navigator>
 );
 
@@ -133,15 +151,15 @@ export default () => {
       return <Splash/>;
     }
 
-    if(!IsLoggedIn){
-      return ( 
-        <AuthContext.Provider value={authContext}>
-          <NavigationContainer theme={MyTheme}>
-            <TabsScreen/>
-          </NavigationContainer>
-        </AuthContext.Provider>
-      );
-    }
+    // if(!IsLoggedIn){
+    //   return ( 
+    //     <AuthContext.Provider value={authContext}>
+    //       <NavigationContainer theme={MyTheme}>
+    //         <TabsScreen/>
+    //       </NavigationContainer>
+    //     </AuthContext.Provider>
+    //   );
+    // }
 
     return ( 
       <AuthContext.Provider value={authContext}>

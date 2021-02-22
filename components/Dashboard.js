@@ -50,6 +50,12 @@ export default class Dashboard extends React.Component {
                 style={{backgroundColor:'#C2DFFB'}}
                 buttonStyle={{backgroundColor:'#0F2080'}, {width:150}, {alignSelf:'flex-end'}}
               />
+              <View style={styles.spaceBetweenButtons}></View>
+              <Button title='Log Food' onPress = { 
+                () => this.props.navigation.navigate('LogFood')} 
+                style={{backgroundColor:'#C2DFFB'}}
+                buttonStyle={{backgroundColor:'#0F2080'}, {width:150}, {alignSelf:'flex-start'}}
+              />
             </View>
         );
     }
