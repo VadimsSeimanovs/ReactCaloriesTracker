@@ -15,7 +15,6 @@ const [data, setData]= useState([])
 const navigation = useNavigation()
 
 const renderItem = (item) => {
-    console.log("item has: " + JSON.stringify(item))
     return(
         <ScrollView contentContainerStyle={stylesSearchFood.viewStyles}>
             <Image source={{uri: item.strMealThumb}}
@@ -26,22 +25,22 @@ const renderItem = (item) => {
                     recipeIngredients: item.strMeasure1 + " " + item.strIngredient1 + ", "
                                     + item.strMeasure2 + " " + item.strIngredient2 + ", "
                                     + item.strMeasure3 + " " + item.strIngredient3 + ", "
-                                    + item.strMeasure4 + " " + item.strIngredient4 + ", "
-                                    + item.strMeasure5 + " " + item.strIngredient5 + ", "
-                                    + item.strMeasure4 + " " + item.strIngredient6 + ", "
-                                    + item.strMeasure7 + " " + item.strIngredient7 + ", "
-                                    + item.strMeasure8 + " " + item.strIngredient8 + ", "
-                                    + item.strMeasure9 + " " + item.strIngredient9 + ", "
-                                    + item.strMeasure10 + " " + item.strIngredient10 + ", "
-                                    + item.strMeasure11 + " " + item.strIngredient11 + ", "
-                                    + item.strMeasure12 + " " + item.strIngredient12 + ", " 
-                                    + item.strMeasure13 + " " + item.strIngredient13 + ", "
-                                    + item.strMeasure14 + " " + item.strIngredient14 + ", "
-                                    + item.strMeasure15 + " " + item.strIngredient15 + ", "
-                                    + item.strMeasure16 + " " + item.strIngredient16 + ", "
-                                    + item.strMeasure17 + " " + item.strIngredient17 + ", "
-                                    + item.strMeasure18 + " " + item.strIngredient18 + ", "
-                                    + item.strMeasure19 + " " + item.strIngredient19 + ", "
+                                    + item.strMeasure4 + " " + item.strIngredient4 + (!item.strIngredient5 ? "" : ", ")
+                                    + item.strMeasure5 + " " + item.strIngredient5 + (!item.strIngredient6 ? "" : ", ")
+                                    + item.strMeasure6 + " " + item.strIngredient6 + (!item.strIngredient7 ? "" : ", ")
+                                    + item.strMeasure7 + " " + item.strIngredient7 + (!item.strIngredient8 ? "" : ", ")
+                                    + item.strMeasure8 + " " + item.strIngredient8 + (!item.strIngredient9 ? "" : ", ")
+                                    + item.strMeasure9 + " " + item.strIngredient9 + (!item.strIngredient10 ? "" : ", ")
+                                    + item.strMeasure10 + " " + item.strIngredient10 + (!item.strIngredient11 ? "" : ", ")
+                                    + item.strMeasure11 + " " + item.strIngredient11 + (!item.strIngredient12 ? "" : ", ")
+                                    + item.strMeasure12 + " " + item.strIngredient12 + (!item.strIngredient13 ? "" : ", ")
+                                    + item.strMeasure13 + " " + item.strIngredient13 + (!item.strIngredient14 ? "" : ", ")
+                                    + item.strMeasure14 + " " + item.strIngredient14 + (!item.strIngredient15 ? "" : ", ")
+                                    + item.strMeasure15 + " " + item.strIngredient15 + (!item.strIngredient16 ? "" : ", ")
+                                    + item.strMeasure16 + " " + item.strIngredient16 + (!item.strIngredient17 ? "" : ", ")
+                                    + item.strMeasure17 + " " + item.strIngredient17 + (!item.strIngredient18 ? "" : ", ")
+                                    + item.strMeasure18 + " " + item.strIngredient18 + (!item.strIngredient19 ? "" : ", ")
+                                    + item.strMeasure19 + " " + item.strIngredient19 + (!item.strIngredient20 ? "" : ", ")
                                     + item.strMeasure20 + " " + item.strIngredient20,
                     recipeInstructions: item.strInstructions
                 })}

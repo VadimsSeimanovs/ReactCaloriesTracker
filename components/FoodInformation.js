@@ -1,8 +1,8 @@
 import React, { useState } from 'react';
-import { SafeAreaView } from 'react-native';
-import { ScrollView } from 'react-native';
+import { SafeAreaView, ScrollView } from 'react-native';
 import { Text, Image } from 'react-native-elements'
-import stylesSearchFood  from './styles/searchFood'
+import styles from './styles/button';
+import stylesFoodInformation  from './styles/foodInformation'
 
 const FoodInformation = ({route}) => {
 
@@ -12,19 +12,26 @@ const { recipeIngredients } = route.params;
 const { recipeInstructions } = route.params;
 
     return (
-      <ScrollView>
-        <SafeAreaView contentContainerStyle={stylesSearchFood.viewStyles}>
-            <Text style={stylesSearchFood.textInput}>{"Recipe name: " + recipeName}</Text>
-
-            <Text style={stylesSearchFood.textInput}>{"Ingredients: " + recipeIngredients}</Text>
-
-            <Text style={stylesSearchFood.textInput}>{"Instructions: " + recipeInstructions}</Text>
+      <SafeAreaView contentContainerStyle={stylesFoodInformation.container}>
+        <ScrollView contentContainerStyle={stylesFoodInformation.scrollView}>
+          <Text style={stylesFoodInformation.textWithImage}>{"Recipe name: " + recipeName}
 
             <Image source={{uri: recipeImage}}
-                style={stylesSearchFood.imageStyles}
+                style={stylesFoodInformation.imageStyles}
             />
-        </SafeAreaView>
-      </ScrollView>
+          </Text>
+
+          <Text style={stylesFoodInformation.text}>
+            <Text style={{fontWeight:'bold'}}>{"Ingredients: "}</Text>
+            <Text>{recipeIngredients}</Text>
+          </Text>
+
+          <Text style={stylesFoodInformation.text}>
+           <Text style={{fontWeight:'bold'}}>{"Instructions: "}</Text>
+            <Text>{recipeInstructions}</Text>
+          </Text>
+        </ScrollView>
+      </SafeAreaView>
   );
 }
 
