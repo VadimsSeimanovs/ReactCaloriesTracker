@@ -14,6 +14,7 @@ export default class BarcodeScanner extends React.Component{
 
     this.state = {
       hasCameraPermission: null,
+      isBarcodeScannerEnabled: true
     }
 
     this.onBarCodeRead = this.onBarCodeRead.bind(this);
@@ -26,22 +27,34 @@ export default class BarcodeScanner extends React.Component{
   }
 
   onBarCodeRead({type, data}){
-    this.setState({scannedItem: {data,type}});
-
-    UserProvider.init();
-    var barcodeIdentifier = this.state.scannedItem.data;
-
-    console.log("barcodeIdentifier: " + barcodeIdentifier)
-
-    UserProvider.getItem(barcodeIdentifier)
-    if(!UserProvider.getItem(barcodeIdentifier) === undefined ||  !UserProvider.getItem(barcodeIdentifier) === "" ||  !UserProvider.getItem(barcodeIdentifier) == null){
-      //this.setState({scanned = true});
-      alert(`Item found, please add the item to the database`);
+    console.log(this.state.isBarcodeScannerEnabled)
+    if(this.state.isBarcodeScannerEnabled){
+      this.setState({scannedItem: {data,type}});
+      UserProvider.init();
+      var barcodeIdentifier = data;
+      UserProvider.getItem(barcodeIdentifier)
+      alert(data)
+      this.setState({
+        isBarcodeScannerEnabled: false
+      })
     }
-    else{
-      alert('item not found!')
-    }
-    // alert(`Bar code with type ${type} and data ${data} has been scanned!`);
+
+
+
+
+    // this.setState({scannedItem: {data,type}});
+    // UserProvider.init();
+    // var barcodeIdentifier = this.state.scannedItem.data;
+    // console.log("barcodeIdentifier: " + barcodeIdentifier)
+    // UserProvider.getItem(barcodeIdentifier)
+    // if(!UserProvider.getItem(barcodeIdentifier) === undefined ||  !UserProvider.getItem(barcodeIdentifier) === "" ||  !UserProvider.getItem(barcodeIdentifier) == null){
+    //   //this.setState({scanned = true});
+    //   alert(`Item found, please add the item to the database`);
+    // }
+    // else{
+    //   alert('item not found!')
+    // }
+    // // alert(`Bar code with type ${type} and data ${data} has been scanned!`);
   }
 
   render(){
@@ -66,6 +79,10 @@ export default class BarcodeScanner extends React.Component{
           
           <Button title={'Add New Item'} clear 
             onPress = {() => {this.props.navigation.navigate("AddItem", {barcodeId: this.state.scannedItem.data})}}
+          />
+
+          <Button title={'Scan Again'} clear 
+            onPress = {() => {this.state.isBarcodeScannerEnabled = true}}
           />
         </View>
       </View>
