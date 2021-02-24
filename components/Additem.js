@@ -7,16 +7,23 @@ import styles  from './styles/button'
 import UserProvider from './Firebase'
 
 export default class AddItem extends React.Component {
+    data = ''
+    
+    constructor(props){
+        super(props)
+       data = props.route.params.barcodeId
+    }
+
     state = {
-        itemBarcode: '000',
-        itemName: '',
-        itemEnergy: '',
-        itemFat: '',
-        itemCarbs: '',
-        itemSugar: '',
-        itemFiber: '',
-        itemProtein: '',
-        itemSalt: ''
+        barcode: '',
+        name: '',
+        energy: '',
+        fat: '',
+        carbs: '',
+        sugar: '',
+        fiber: '',
+        protein: '',
+        salt: ''
     }
 
     onChangeText = (key, val) => {
@@ -25,9 +32,7 @@ export default class AddItem extends React.Component {
 
   checkUserInput = () => {
     UserProvider.init()
-    UserProvider.insertItem(this.state.itemBarcode, this.state.itemName, this.state.itemEnergy, this.state.itemFat, this.state.itemCarbs, this.state.itemSugar, this.state.itemProtein, this.state.itemSalt)
-    UserProvider.getItem()
-    console.log("state "+ state.itemName)  
+    UserProvider.insertItem(data, this.state.name, this.state.energy, this.state.fat, this.state.carbs, this.state.sugar, this.state.fiber, this.state.protein, this.state.salt)
 }
 
   render(){
@@ -38,14 +43,14 @@ export default class AddItem extends React.Component {
         <Input style={styles.textInput}
             placeholderTextColor='#707070'
             placeholder='Item name'
-            onChangeText={val=> this.onChangeText('itemName', val)}
+            onChangeText={val=> this.onChangeText('name', val)}
             // value={this.state.itemName}
         />
 
         {/* <Input style={styles.textInput}
             placeholderTextColor='#707070'
             placeholder='Brand'
-            value={this.state.bran}
+            value={this.state.brand}
         /> */}
 
         {/* <Input style={styles.textInput}
@@ -56,14 +61,14 @@ export default class AddItem extends React.Component {
         <Input style={styles.textInput}
             placeholderTextColor='#707070'
             placeholder='Calories'
-            onChangeText={val=> this.onChangeText('itemEnergy', val)}
+            onChangeText={val=> this.onChangeText('energy', val)}
             // value={this.state.itemEnergy}
         />
 
         <Input style={styles.textInput}
             placeholderTextColor='#707070'
             placeholder='Fat'
-            // onChangeText={val=> this.onChangeText('itemFat', val)}
+            onChangeText={val=> this.onChangeText('fat', val)}
             // value={this.state.itemFat}
         />
 
@@ -80,35 +85,35 @@ export default class AddItem extends React.Component {
         <Input style={styles.textInput}
             placeholderTextColor='#707070'
             placeholder='Sodium'
-            // onChangeText={val=> this.onChangeText('itemSalt', val)}
+            onChangeText={val=> this.onChangeText('salt', val)}
             // value={this.state.itemSalt}
         />
 
         <Input style={styles.textInput}
             placeholderTextColor='#707070'
             placeholder='Carbohydrates'
-            // onChangeText={val=> this.onChangeText('itemCarbs', val)}
+            onChangeText={val=> this.onChangeText('carbs', val)}
             // value={this.state.itemCarbs}
         />
 
         <Input style={styles.textInput}
             placeholderTextColor='#707070'
             placeholder='Fibre'
-            // onChangeText={val=> this.onChangeText('itemFiber', val)}
+            onChangeText={val=> this.onChangeText('fiber', val)}
             // value={this.state.itemFiber}
         />
 
         <Input style={styles.textInput}
             placeholderTextColor='#707070'
             placeholder='Sugar'
-            // onChangeText={val=> this.onChangeText('itemSugar', val)}
+            onChangeText={val=> this.onChangeText('sugar', val)}
             // value={this.state.itemSugar}
         />
 
         <Input style={styles.textInput}
             placeholderTextColor='#707070'
             placeholder='Protein'
-            // onChangeText={val=> this.onChangeText('itemProtein', val)}
+            onChangeText={val=> this.onChangeText('protein', val)}
             // value={this.state.itemProtein}
         />
 

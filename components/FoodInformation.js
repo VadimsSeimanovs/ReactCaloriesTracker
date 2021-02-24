@@ -1,7 +1,6 @@
-import React, { useState } from 'react';
+import React from 'react';
 import { SafeAreaView, ScrollView } from 'react-native';
 import { Text, Image } from 'react-native-elements'
-import styles from './styles/button';
 import stylesFoodInformation  from './styles/foodInformation'
 
 const FoodInformation = ({route}) => {

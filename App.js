@@ -32,53 +32,65 @@ const AuthStackScreen = () => (
     <AuthStack.Screen
       name="Login"
       component={Login}
+      options= {{headerShown: false}}
     />
     <AuthStack.Screen
       name="Signup2"
       component={Signup2}
+      options= {{headerShown: false}}
     />
     <AuthStack.Screen
       name="VerifyCode"
       component={VerifyCode}
+      options= {{headerShown: false}}
     />
     <AuthStack.Screen
       name="NewAccount"
       component={NewAccount}
+      options= {{headerShown: false}}
     />
     <AuthStack.Screen
       name="Dashboard"
       component={Dashboard}
+      options= {{headerShown: false}}
     />
     <AuthStack.Screen
       name="ForgotPassword"
       component={ForgotPassword}
+      options= {{headerShown: false}}
       />
     <AuthStack.Screen
       name="SetGoal"
       component={SetGoal}
+      options= {{headerShown: false}}
       />
     <AuthStack.Screen
       name="BarcodeScanner"
       component={BarcodeScanner}
+      options= {{headerShown: false}}
       />
     <AuthStack.Screen
       name="AddItem"
       component={AddItem}
+      options= {{headerShown: false}}
       />
 
     <AuthStack.Screen
       name="LogFood"
       component={LogFood}
+      options= {{headerShown: false}}
       />
 
     <AuthStack.Screen
       name="SearchFood"
       component={SearchFood}
+      options= {{headerShown: false}}
     />
 
     <AuthStack.Screen
       name="FoodInformation"
       component={FoodInformation}
+      options= {{headerShown: false}}
       />
 
   </AuthStack.Navigator>
@@ -87,7 +99,7 @@ const AuthStackScreen = () => (
 const Tabs = createBottomTabNavigator();
 
 const TabsScreen = () => (
-  <Tabs.Navigator>
+  <Tabs.Navigator initialRouteName={'Dashboard'}>
     {/* <Tabs.Screen name="Dashboard" component={Dashboard}/> */}
     <Tabs.Screen name="BarcodeScanner" component={BarcodeScanner}/>
     <Tabs.Screen name="SetGoal" component={SetGoal}/>

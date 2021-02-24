@@ -2,7 +2,7 @@ import * as React from 'react';
 import { useState, useEffect } from 'react';
 import { Text, View, StyleSheet } from 'react-native';
 import { Button } from 'react-native-elements'
-import { Camera, BarCodeScanner, Permissions } from 'expo-barcode-scanner';
+import { BarCodeScanner } from 'expo-barcode-scanner';
 import UserProvider from './Firebase';
 
 
@@ -10,13 +10,15 @@ export default class BarcodeScanner extends React.Component{
   constructor(props) {
     super(props);
 
-    this.onBarCodeRead = this.onBarCodeRead.bind(this);
     this.scannedCode = null;
 
     this.state = {
       hasCameraPermission: null,
     }
+
+    this.onBarCodeRead = this.onBarCodeRead.bind(this);
   }
+
   
  async componentDidMount (){
       const { status } = await BarCodeScanner.requestPermissionsAsync();
@@ -25,13 +27,21 @@ export default class BarcodeScanner extends React.Component{
 
   onBarCodeRead({type, data}){
     this.setState({scannedItem: {data,type}});
+
     UserProvider.init();
-    if(UserProvider.getItem(data) == null){
+    var barcodeIdentifier = this.state.scannedItem.data;
+
+    console.log("barcodeIdentifier: " + barcodeIdentifier)
+
+    UserProvider.getItem(barcodeIdentifier)
+    if(!UserProvider.getItem(barcodeIdentifier) === undefined ||  !UserProvider.getItem(barcodeIdentifier) === "" ||  !UserProvider.getItem(barcodeIdentifier) == null){
       //this.setState({scanned = true});
-      alert(`Item not found, please add the item to the database`);
-       
+      alert(`Item found, please add the item to the database`);
     }
-    alert(`Bar code with type ${type} and data ${data} has been scanned!`);
+    else{
+      alert('item not found!')
+    }
+    // alert(`Bar code with type ${type} and data ${data} has been scanned!`);
   }
 
   render(){
@@ -45,6 +55,7 @@ export default class BarcodeScanner extends React.Component{
       return <Text>No access to camera</Text>;
     }
 
+
     return (
       <View style={styles.container}>
         <View style={{ flex: 1 }}>
@@ -54,9 +65,8 @@ export default class BarcodeScanner extends React.Component{
           />
           
           <Button title={'Add New Item'} clear 
-            onPress = {() => {this.props.navigation.navigate("AddItem")}}
+            onPress = {() => {this.props.navigation.navigate("AddItem", {barcodeId: this.state.scannedItem.data})}}
           />
-
         </View>
       </View>
       

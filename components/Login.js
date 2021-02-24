@@ -23,7 +23,7 @@ export default class Login extends React.Component {
       UserProvider.signInUser(this.state.email, this.state.password);
         console.log(UserProvider.getUserExistance());
         if(UserProvider.getUserExistance() == true){
-            this.props.navigation.navigate('BarcodeScanner');
+            this.props.navigation.navigate('Dashboard');
             //Here fill the user class with the user details, pass this information to the dashboard
         }
     } else {
@@ -35,7 +35,7 @@ export default class Login extends React.Component {
     return (
       <View style={styles.container}>
           <Text style={styles.textInputLabel} h3>Email Address:</Text>
-          <Input style={styles.textInput}
+          <Input autoCorrect={true} autoCapitalize="none" style={styles.textInput}
             placeholderTextColor='#707070'
             placeholder='Email Address'
             errorStyle={{ color: 'red' }}
@@ -44,7 +44,7 @@ export default class Login extends React.Component {
           />
 
           <Text style={styles.textInputLabel} h3>{'\n'}Password:</Text>
-          <Input style={styles.textInput}
+          <Input secureTextEntry={true} autoCorrect={false} autoCapitalize="none" style={styles.textInput}
             placeholderTextColor='#707070'
             placeholder='Password'
             errorStyle={{ color: 'red' }}
@@ -52,7 +52,9 @@ export default class Login extends React.Component {
             onChangeText={val=> this.onChangeText('password', val)}
           />
 
-          <Button title='Login' raised onPress = { 
+          <Button title='Login' raised 
+          // onPress = {() => this.checkUserInput()}
+          onPress = { 
             () => this.props.navigation.navigate('Dashboard')} 
             buttonStyle={{backgroundColor: '#0F2080'}}
           />

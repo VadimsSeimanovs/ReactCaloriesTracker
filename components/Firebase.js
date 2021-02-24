@@ -2,14 +2,14 @@ import * as firebase from 'firebase'
 import { Component } from 'react';
 
 const firebaseConfig = {
-apiKey: "AIzaSyBhDP0hjvwTeDtWhPK5TwxsoX35qRj92yk",
-authDomain: "caloriestracker-26ff8.firebaseapp.com",
-databaseURL: "https://caloriestracker-26ff8.firebaseio.com",
-projectId: "caloriestracker-26ff8",
-storageBucket: "caloriestracker-26ff8.appspot.com",
-messagingSenderId: "651745419400",
-appId: "1:651745419400:web:2d8a921ed15ef49372bf3d",
-measurementId: "G-WTE99C5XZ4"
+  apiKey: "AIzaSyBhDP0hjvwTeDtWhPK5TwxsoX35qRj92yk",
+  authDomain: "caloriestracker-26ff8.firebaseapp.com",
+  databaseURL: "https://caloriestracker-26ff8.firebaseio.com",
+  projectId: "caloriestracker-26ff8",
+  storageBucket: "caloriestracker-26ff8.appspot.com",
+  messagingSenderId: "651745419400",
+  appId: "1:651745419400:web:2d8a921ed15ef49372bf3d",
+  measurementId: "G-WTE99C5XZ4"
 }
 
 const actionCodeSettings = {
@@ -31,13 +31,11 @@ class UserProvider extends Component{
   };
     //static auth;
     static init(){
-      if(databaseExists == false){
+      if(!firebase.apps.length){
         firebase.initializeApp(firebaseConfig);
-        databaseExists = true;
-        // console.log(databaseExists);
       }else{
-        // console.log(databaseExists);
-        return;
+        firebase.app();
+        // return;
       }
     }
 
@@ -152,7 +150,7 @@ class UserProvider extends Component{
     }
 
   static insertItem(itemBarcode, itemName, itemEnergy, itemFat, itemCarbs, itemSugar, itemFiber, itemProtein, itemSalt){
-    let data = {
+    firebase.database().ref('items').child(itemBarcode).set({
       barcode: itemBarcode,
       name: itemName,
       energy: itemEnergy,
@@ -162,34 +160,39 @@ class UserProvider extends Component{
       fiber: itemFiber,
       protein: itemProtein,
       salt: itemSalt
-    }    
-
-    firebase.database().ref('items').child(itemBarcode).set(data)
-    .then((data) => {
-      console.log('Saved Data', data)
+    })
+    .then((itemBarcode) => {
+      console.log('Saved Data', itemBarcode)
     })
     .catch((error) => {
       console.log('Storing Error', error)
     })
   }
 
-  static getItem(props){
-    var ref = firebase.database().ref('items');
-    ref.on("value", snapshot => {
-      if(snapshot.val() == null){
-        return;
-      }else{
-      let storiesObj = snapshot.val();
-      storiesObj
-      .child(props.match.params.id)
-      .then(() => ref.once("value"))
-      .then(snapshot => snapshot.val())
-      .catch(error => ({
-         errorCode: error.code,
-         errorMessage: error.message
-       }));
-      }
-    });
+  static getItem(itemBarcode){
+    console.log("get item with: " + itemBarcode)
+    var ref = firebase.database().ref('items').child(itemBarcode);
+    ref.once('value', (snapshot) => {
+      var data = snapshot.val()
+      console.log("data from database: " + JSON.stringify(data))
+    })
+
+    // var ref = firebase.database().ref('items');
+    // ref.on("value", snapshot => {
+    //   if(snapshot.val() == null){
+    //     return;
+    //   }else{
+    //   let storiesObj = snapshot.val();
+    //   storiesObj
+    //   .child(props.match.params.id)
+    //   .then(() => ref.once("value"))
+    //   .then(snapshot => snapshot.val())
+    //   .catch(error => ({
+    //      errorCode: error.code,
+    //      errorMessage: error.message
+    //    }));
+    //   }
+    // });
   }
 }
 
