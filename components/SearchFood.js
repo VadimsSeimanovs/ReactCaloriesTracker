@@ -15,9 +15,12 @@ const [data, setData]= useState([])
 const navigation = useNavigation()
 
 const renderItem = (item) => {
+    console.log(JSON.stringify(item))
     return(
         <ScrollView contentContainerStyle={stylesSearchFood.viewStyles}>
-            <Image source={{uri: item.strMealThumb}}
+            {/* <Text style={stylesSearchFood.textInput}> {item.calories} {item.fat} {item.saturates} {item.carbs} {item.sugars} {item.fibre} {item.protein} {item.salt}</Text> */}
+            <Text style={stylesSearchFood.textInput}>{JSON.stringify(item).replace('{', '').replace('}', '').replace('"', '').replace('"', '').replace('"', '').replace('"', '')}</Text>
+            {/* <Image source={{uri: item.strMealThumb}}
                 style={stylesSearchFood.imageStyles}
                 onPress={() => navigation.navigate('FoodInformation', { 
                     recipeName: item.strMeal,
@@ -70,21 +73,15 @@ const renderItem = (item) => {
                                 + item.strMeasure19 + " " + item.strIngredient19 + (!item.strIngredient20 ? "" : ", ")
                                 + item.strMeasure20 + " " + item.strIngredient20,
                 recipeInstructions: item.strInstructions
-            })}>{item.strMeal}</Text>
+            })}>{item.strMeal}</Text> */}
       </ScrollView>
     )
 }
 
 const fetchApiCall = () => {
-    fetch("https://themealdb.p.rapidapi.com/search.php?s=" + recipe, {
-        "method": "GET",
-        "headers": {
-            "x-rapidapi-key": "aa3fdecf10mshf0e65a6116e5830p124dfbjsna6616e047fe1",
-            "x-rapidapi-host": "themealdb.p.rapidapi.com"
-        }
-    })
+    fetch("http://192.168.1.124:8000/?recipeName=" + recipe)
     .then((response) => response.json())
-    .then((json) => setData(json.meals))
+    .then((json) => setData(json.nutritions))
     .catch(function(error) {
     console.log('There has been a problem with your fetch operation: ' + error.message);
         // ADD THIS THROW error
@@ -107,13 +104,14 @@ const fetchApiCall = () => {
         {isLoading ? (<ActivityIndicator />) :  (
         <FlatList 
             data={data}
-            keyExtractor={(item, index) => item.idMeal}
+            keyExtractor={(item, index) => item.id}
             renderItem={({item}) => renderItem(item)}
         /> 
         )}
         
         <View>
             <Button title="Search" raised onPress={fetchApiCall}/>
+            <Button title="test" onPress={window.location.reload()}/>
       </View>
       </SafeAreaView>
   );
