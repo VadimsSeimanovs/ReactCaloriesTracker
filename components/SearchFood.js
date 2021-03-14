@@ -111,7 +111,6 @@ const fetchApiCall = () => {
         
         <View>
             <Button title="Search" raised onPress={fetchApiCall}/>
-            <Button title="test" onPress={window.location.reload()}/>
       </View>
       </SafeAreaView>
   );
