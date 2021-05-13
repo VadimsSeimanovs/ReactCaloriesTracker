@@ -1,4 +1,4 @@
-import React, { Component } from 'react';
+import React, { Component, useState } from 'react';
 import { View } from 'react-native';
 import { Text, Input, Button } from 'react-native-elements'
 import DropDownPicker from 'react-native-dropdown-picker';
@@ -53,7 +53,6 @@ export default class NewAccount extends Component{
       <Input
         placeholder='Age'
         errorStyle={{ color: 'red' }}
-        errorMessage='Check the age and try again'
         onChangeText={val => this.onChangeText('age', val)}
       />
 
@@ -61,7 +60,7 @@ export default class NewAccount extends Component{
       <Input
         placeholder='Weight'
         errorStyle={{ color: 'red' }}
-        errorMessage='Check the weight and try again'
+        //errorMessage='Check the weight and try again'
         onChangeText={val => this.onChangeText('weight', val)}
       />
       
@@ -75,7 +74,7 @@ export default class NewAccount extends Component{
       <Input
         placeholder='Height'
         errorStyle={{ color: 'red' }}
-        errorMessage='Check the height and try again'
+        //errorMessage='Check the height and try again'
         onChangeText={val => this.onChangeText('height', val)}
       />
 

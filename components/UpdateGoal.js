@@ -14,7 +14,7 @@ var weight_props = [
   {label: 'Oz', value: 'Oz' }
 ];
 
-export default class SetGoal extends Component {
+export default class UpdateGoal extends Component {
 
   state = {
     goalWeight: '',
@@ -49,7 +49,7 @@ export default class SetGoal extends Component {
               <Input
                 placeholder='Weight'
                 errorStyle={{ color: 'red' }}
-                //errorMessage='Check the weight and try again'
+                errorMessage='Check the weight and try again'
                 onChangeText={val => this.onChangeText('goalWeight', val)}
               />
 
@@ -60,7 +60,7 @@ export default class SetGoal extends Component {
                 onPress={(value) => {this.setState({goalWeightType:value})}}
               />
 
-              <Button title='Continue' raised onPress= {
+              <Button title='Submit' raised onPress= {
                 () => {this.checkUserInput()}
               }/>
     </View>

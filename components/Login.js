@@ -32,6 +32,7 @@ export default class Login extends React.Component {
   }
 
   render(){
+    const { navigation } = this.props
     return (
       <View style={styles.container}>
           <Text style={styles.textInputLabel} h3>Email Address:</Text>
@@ -55,21 +56,21 @@ export default class Login extends React.Component {
           <Button title='Login' raised 
           // onPress = {() => this.checkUserInput()}
           onPress = { 
-            () => this.props.navigation.navigate('Dashboard')} 
+            () => navigation.navigate('Dashboard')} 
             buttonStyle={{backgroundColor: '#0F2080'}}
           />
 
           <View style={styles.spaceBetweenButtons}></View>
 
           <Button title='Forgot password' raised onPress = {
-            () => this.props.navigation.navigate('ForgotPassword')}
+            () => navigation.navigate('ForgotPassword')}
             buttonStyle={{backgroundColor:'#0F2080'}}
           />
 
           <View style={{marginTop:20}}></View>
 
           <Button title='Dont have an account? Sign up' raised onPress = {
-            () => this.props.navigation.navigate('NewAccount')}
+            () => navigation.navigate('NewAccount')}
             buttonStyle={{backgroundColor:'#0F2080'}}
           />
           <StatusBar style="auto" />

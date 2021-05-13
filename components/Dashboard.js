@@ -42,20 +42,6 @@ export default class Dashboard extends React.Component {
                 chartConfig={chartConfig}
                 hideLegend={false}
               />
-
-              <View style={{marginTop:100}}/>
-
-              <Button title='Barcode scanner' onPress = { 
-                () => this.props.navigation.navigate('BarcodeScanner')} 
-                style={{backgroundColor:'#C2DFFB'}}
-                buttonStyle={{backgroundColor:'#0F2080'}, {width:150}, {alignSelf:'flex-end'}}
-              />
-              <View style={styles.spaceBetweenButtons}></View>
-              <Button title='Log Food' onPress = { 
-                () => this.props.navigation.navigate('LogFood')} 
-                style={{backgroundColor:'#C2DFFB'}}
-                buttonStyle={{backgroundColor:'#0F2080'}, {width:150}, {alignSelf:'flex-start'}}
-              />
             </View>
         );
     }

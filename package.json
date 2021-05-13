@@ -5,7 +5,31 @@
     "android": "expo start --android",
     "ios": "expo start --ios",
     "web": "expo start --web",
-    "eject": "expo eject"
+    "eject": "expo eject",
+    "test": "jest",
+    "coverage": "jest test --coverage"
+  },
+  "jest": {
+    "preset": "jest-expo",
+    "automock": false,
+    "transformIgnorePatterns": [
+      "node_modules/(?!(jest-)?react-native|react-clone-referenced-element|@react-native-community|expo(nent)?|@expo(nent)?/.*|react-navigation|@react-navigation/.*|@unimodules/.*|unimodules|sentry-expo|native-base|@sentry/.*)"
+    ],
+    "collectCoverage": true,
+    "coverageReporters": ["json", "html"],
+    "collectCoverageFrom": [
+      "**/*.{js,jsx}",
+      "!**/coverage/**",
+      "!**/node_modules/**",
+      "!**/babel.config.js",
+      "!**/jest.setup.js"
+    ],
+    "coverageThreshold": {
+      "global": {
+        "lines": 0,
+        "statements": 0
+      }
+    }
   },
   "dependencies": {
     "@react-native-community/masked-view": "0.1.10",
@@ -19,6 +43,7 @@
     "expo-cli": "^4.1.6",
     "expo-status-bar": "~1.0.3",
     "firebase": "7.9.0",
+    "jest-expo": "^41.0.0",
     "react": "16.13.1",
     "react-dom": "16.13.1",
     "react-native": "https://github.com/expo/react-native/archive/sdk-40.0.1.tar.gz",
@@ -36,7 +61,9 @@
     "react-native-web": "~0.13.12"
   },
   "devDependencies": {
-    "@babel/core": "~7.9.0"
+    "@babel/core": "~7.9.0",
+    "jest-fetch-mock": "^3.0.3",
+    "react-test-renderer": "^17.0.2"
   },
   "private": true
 }

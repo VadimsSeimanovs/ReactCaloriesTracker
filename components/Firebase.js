@@ -21,7 +21,7 @@ const actionCodeSettings = {
 
 var databaseExists = false;
 var userExists = true;
-
+var userLogedIn = false;
 //export const UserContext = createContext({ user: null });
 
 class UserProvider extends Component{
@@ -62,9 +62,25 @@ class UserProvider extends Component{
         alert('Wrong password.');
       } else {
         userExists = false;
+        checkUserLogedIn()
         alert(errorMessage);
       }
     });
+  }
+
+  static checkUserLogedIn(){
+    firebase.auth().onAuthStateChanged(function(user){
+      if(user){
+        userLogedIn = true;
+      }
+      else{
+        userLogedIn = false;
+      }
+    })
+  }
+
+  static getUserLogInStatus(){
+    return userLogedIn
   }
 
   static getUserDetails(){

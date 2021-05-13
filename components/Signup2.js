@@ -38,7 +38,7 @@ export default class Signup2 extends Component {
             <Input
               placeholder='Name'
               errorStyle={{ color: 'red' }}
-              errorMessage='Check the name and try again'
+              //errorMessage='Check the name and try again'
               onChangeText={val => this.onChangeText('name', val)}
             />
 
@@ -46,7 +46,7 @@ export default class Signup2 extends Component {
             <Input
               placeholder='Email address'
               errorStyle={{ color: 'red' }}
-              errorMessage='Check the email address and try again'
+              //errorMessage='Check the email address and try again'
               onChangeText={val => this.onChangeText('email', val)}
             />
 
@@ -54,7 +54,7 @@ export default class Signup2 extends Component {
             <Input
               placeholder='Password'
               errorStyle={{ color: 'red' }}
-              errorMessage='Check the password and try again'
+              //errorMessage='Check the password and try again'
               onChangeText={val => this.onChangeText('password', val)}
             />
 
@@ -62,7 +62,7 @@ export default class Signup2 extends Component {
             <Input
               placeholder='Password'
               errorStyle={{ color: 'red' }}
-              errorMessage='Check the password and try again'
+              //errorMessage='Check the password and try again'
               onChangeText={val =>this.onChangeText('confirmPassword', val)}
             />
 

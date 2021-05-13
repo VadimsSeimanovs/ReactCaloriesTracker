@@ -5,35 +5,56 @@ import { Button, Text } from 'react-native-elements'
 import styles  from './styles/button'
 
 export default class LogFood extends React.Component {
-
   render(){
     return (
       <View>
-        <Text h2 style={styles.textInputLabel}>Add Item</Text>
+        <Text h2 style={styles.textInputLabel}>Add food</Text>
         <View style={styles.spaceBetweenButtons}></View>
-        
-        <Button title='Breakfast' raised 
+        <View style={styles.spaceBetweenButtons}></View>
+
+        <Button title='Breakfast'
+            style={{backgroundColor:'#C2DFFB'}}
             buttonStyle={{backgroundColor: '#0F2080'}}
             onPress= {
               () => {this.props.navigation.navigate("SearchFood")}} />
 
-        <Button title='Lunch' raised 
+        <View style={styles.spaceBetweenButtons}></View>
+        <View style={styles.spaceBetweenButtons}></View>
+
+        <Button title='Lunch'
+            style={{backgroundColor:'#C2DFFB'}}
             buttonStyle={{backgroundColor: '#0F2080'}}
         />
 
-        <Button title='Dinner' raised 
+        <View style={styles.spaceBetweenButtons}></View>
+        <View style={styles.spaceBetweenButtons}></View>
+
+        <Button title='Dinner'
+            style={{backgroundColor:'#C2DFFB'}}
             buttonStyle={{backgroundColor: '#0F2080'}}
+            onPress= {
+              () => {this.props.navigation.navigate("SearchFood")}}
         />
 
-        <Button title='Snacks' raised 
+        <View style={styles.spaceBetweenButtons}></View>
+        <View style={styles.spaceBetweenButtons}></View>
+
+        <Button title='Snacks'
+            style={{backgroundColor:'#C2DFFB'}}
             buttonStyle={{backgroundColor: '#0F2080'}}
+            onPress = {
+              () => this.props.navigation.navigate("LogSnacks")}
         />
 
-        <Button title='Water' raised 
-            buttonStyle={{backgroundColor: '#0F2080'}}
-        />
+        <View style={styles.spaceBetweenButtons}></View>
+        <View style={styles.spaceBetweenButtons}></View>
 
-       
+        <Button title='Water'
+            style={{backgroundColor:'#C2DFFB'}}
+            buttonStyle={{backgroundColor:'#0F2080'}}
+            onPress = {
+              () => this.props.navigation.navigate("LogWater")}
+        />
           <StatusBar style="auto" />
       </View>
   );
