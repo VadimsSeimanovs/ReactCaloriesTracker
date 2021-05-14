@@ -2,7 +2,7 @@
     This class will collect lall the information about the item that is being scanner ort retirieved fromn the database
     It will also be used to push the data that has been identified or entered by the user as the new item
 */
-
+import React from 'react';
 
 var barcodeId;
 var name;

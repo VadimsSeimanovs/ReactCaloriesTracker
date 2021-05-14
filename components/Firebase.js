@@ -1,5 +1,6 @@
 import * as firebase from 'firebase'
 import { Component } from 'react';
+import Item from './Item'
 
 const firebaseConfig = {
   apiKey: "AIzaSyBhDP0hjvwTeDtWhPK5TwxsoX35qRj92yk",
@@ -19,9 +20,9 @@ const actionCodeSettings = {
   dynamicLinkDomain: 'example.page.link'
 };
 
-var databaseExists = false;
 var userExists = true;
-var userLogedIn = false;
+var userLogedIn = false; 
+
 //export const UserContext = createContext({ user: null });
 
 class UserProvider extends Component{
@@ -58,30 +59,33 @@ class UserProvider extends Component{
       var errorCode = error.code;
       var errorMessage = error.message;
       if (errorCode === 'auth/wrong-password') {
-        userExists = false;
+        this.checkUserLogedIn
         alert('Wrong password.');
       } else {
         userExists = false;
-        checkUserLogedIn()
+        this.checkUserLogedIn
         alert(errorMessage);
       }
     });
   }
 
-  static checkUserLogedIn(){
-    firebase.auth().onAuthStateChanged(function(user){
-      if(user){
-        userLogedIn = true;
-      }
-      else{
-        userLogedIn = false;
-      }
-    })
-  }
 
-  static getUserLogInStatus(){
-    return userLogedIn
-  }
+static checkUserLogedIn(){
+  firebase.auth().onAuthStateChanged(function(user){
+    if(user){
+      userLogedIn = true;
+      return userLogedIn
+    }
+    else{
+      userLogedIn = false;
+      return userLogedIn
+    }
+  })
+}
+
+static getUserLogInStatus(){
+  return userLogedIn
+}
 
   static getUserDetails(){
     // firebase.database().ref('users').once('value', (data) => {
@@ -127,10 +131,6 @@ class UserProvider extends Component{
     }).catch(function(error) {
       console.log(error);
    });
-  }
-
-  static getUserExistance(){
-    return userExists;
   }
 
   static authListener(){
@@ -191,7 +191,22 @@ class UserProvider extends Component{
     ref.once('value', (snapshot) => {
       var data = snapshot.val()
       console.log("data from database: " + JSON.stringify(data))
+      Item.setName(data.name)
+      Item.setEnergy(data.energy)
+      Item.setFat(data.fat)
+      Item.setCarbs(data.carbs)
+      Item.setFiber(data.fiber)
+      Item.setProtein(data.protein)
+      Item.setSalt(data.salt)
+      Item.setSugar(data.sugar)
+      alert("The item have been scanned: " + data.name)
     })
+  //   ref.once('value')
+  //  .then( function(snapshot) {
+  //     var key = snapshot.val()
+  //     var childKey = snapshot.child(itemBarcode).val()
+  //     console.log("data from database: " + childKey)
+  //   })
 
     // var ref = firebase.database().ref('items');
     // ref.on("value", snapshot => {

@@ -50,7 +50,7 @@ const TabsScreen = () => (
 export default () => {
     const [isLoading, setIsLoading] = React.useState(true);
     const [userToken, setUserToken] = React.useState(null);    
-
+  
     const authContext = React.useMemo(() => {
       return {
         signIn: () => {
@@ -78,59 +78,59 @@ export default () => {
       return <Splash/>;
     }
 
-console.log("status: " + userStatus)
+// console.log("status: " + userStatus)
 
-if(userStatus == false){
-  return ( 
-    <AuthContext.Provider value={authContext}>
-      <NavigationContainer theme={MyTheme}>
-        <RootStack.Navigator>
-          <RootStack.Screen 
-            name = "Login"
-            component = { Login }
-            options= {{headerShown: false}}
-          />
-          {/* <AuthStack.Screen
-            name="ForgotPassword"
-            component={ForgotPassword}
-            options= {{headerShown: false}}
-          />
-          <AuthStack.Screen
-            name="SetGoal"
-            component={SetGoal}
-            options= {{headerShown: false}}
-          />
-          <AuthStack.Screen
-            name="Signup2"
-            component={Signup2}
-            options= {{headerShown: false}}
-          />
-          <AuthStack.Screen
-            name="VerifyCode"
-            component={VerifyCode}
-            options= {{headerShown: false}}
-          />
-          <AuthStack.Screen
-            name="NewAccount"
-            component={NewAccount}
-            options= {{headerShown: false}}
-          />
-          <AuthStack.Screen
-            name="ChangePassword"
-            component={ChangePassword}
-            options= {{headerShown: false}}
-          /> */}
-          <AuthStack.Screen
-            name="Dashboard"
-            component={Dashboard}
-            options= {{headerShown: false}}
-          />
-        </RootStack.Navigator>
-      </NavigationContainer>
-    </AuthContext.Provider>
-  )
-}
-else{
+// if(userStatus == false || userStatus == undefined){
+//   return ( 
+//     <AuthContext.Provider value={authContext}>
+//       <NavigationContainer theme={MyTheme}>
+//         <RootStack.Navigator>
+//           <RootStack.Screen 
+//             name = "Login"
+//             component = { Login }
+//             options= {{headerShown: false}}
+//           />
+//           {/* <AuthStack.Screen
+//             name="ForgotPassword"
+//             component={ForgotPassword}
+//             options= {{headerShown: false}}
+//           />
+//           <AuthStack.Screen
+//             name="SetGoal"
+//             component={SetGoal}
+//             options= {{headerShown: false}}
+//           />
+//           <AuthStack.Screen
+//             name="Signup2"
+//             component={Signup2}
+//             options= {{headerShown: false}}
+//           />
+//           <AuthStack.Screen
+//             name="VerifyCode"
+//             component={VerifyCode}
+//             options= {{headerShown: false}}
+//           />
+//           <AuthStack.Screen
+//             name="NewAccount"
+//             component={NewAccount}
+//             options= {{headerShown: false}}
+//           />
+//           <AuthStack.Screen
+//             name="ChangePassword"
+//             component={ChangePassword}
+//             options= {{headerShown: false}}
+//           /> */}
+//           <AuthStack.Screen
+//             name="Dashboard"
+//             component={Dashboard}
+//             options= {{headerShown: false}}
+//           />
+//         </RootStack.Navigator>
+//       </NavigationContainer>
+//     </AuthContext.Provider>
+//   )
+// }
+// else{
   return ( 
     <AuthContext.Provider value={authContext}>
       <NavigationContainer theme={MyTheme}>
@@ -234,4 +234,4 @@ else{
     </AuthContext.Provider>
   )
 }
-}
+//}

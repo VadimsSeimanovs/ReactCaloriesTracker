@@ -7,6 +7,7 @@ import RadioForm from 'react-native-simple-radio-button';
 import UserProvider from './Firebase';
 import User from './User';
 import CaloriesCalculator from './CaloriesCalculator';
+import App from '../App'
 
 var weight_props = [
   {label: 'Kg', value: 'Kg' },
