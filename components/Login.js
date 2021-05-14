@@ -4,6 +4,7 @@ import { View, SafeAreaView } from 'react-native';
 import { Input, Button, Text } from 'react-native-elements'
 import UserProvider from './Firebase'
 import styles  from './styles/button'
+import User from './User';
 
 export default class Login extends React.Component {
 
@@ -21,11 +22,11 @@ export default class Login extends React.Component {
       if(this.state.password != '')
       UserProvider.init();
       UserProvider.signInUser(this.state.email, this.state.password);
-        console.log(UserProvider.getUserExistance());
-        if(UserProvider.getUserExistance() == true){
-          UserProvider.getUserLogInStatus()
-            this.props.navigation.navigate('Dashboard');
-        }
+      if(UserProvider.checkUserLogedIn() == false){
+        alert("Wrong Credentials!!")
+      }else{
+        this.props.navigation.navigate('Dashboard');
+      }
     } else {
      alert('Enter email address and password');
     }
@@ -54,6 +55,8 @@ export default class Login extends React.Component {
 
           <Button title='Login' raised 
           onPress = {() => this.checkUserInput()}
+          //onPress = { 
+            //() => navigation.navigate('Dashboard')} 
             buttonStyle={{backgroundColor: '#0F2080'}}
           />
 

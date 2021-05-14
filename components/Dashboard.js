@@ -1,13 +1,15 @@
 import React from 'react';
-import { View, Text } from 'react-native';
+import { View, Text , TodoList} from 'react-native';
 import { Button } from 'react-native-elements'
 import { ProgressChart, BarChart } from 'react-native-chart-kit';
 import { Dimensions } from 'react-native';
 import styles  from './styles/button'
 import { SafeAreaView } from 'react-native';
+import Item from './Item';
 
 export default class Dashboard extends React.Component {
     render(){
+
       const data = {
         labels: ["Calories Intake", "Calories Left"], // optional
         data: [200, 1807]

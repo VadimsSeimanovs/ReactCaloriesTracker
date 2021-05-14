@@ -33,7 +33,7 @@ export default class BarcodeScanner extends React.Component{
       UserProvider.init();
       var barcodeIdentifier = data;
       UserProvider.getItem(barcodeIdentifier)
-      alert(data)
+      //alert(data)
       this.setState({
         isBarcodeScannerEnabled: false
       })

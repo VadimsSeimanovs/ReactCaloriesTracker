@@ -9,6 +9,7 @@ import User from './User';
 import CaloriesCalculator from './CaloriesCalculator';
 import styles from './styles/button';
 import { ScrollView } from 'react-native-gesture-handler';
+import App from '../App'
 
 var weight_props = [
   {label: 'Kg', value: 'Kg' },

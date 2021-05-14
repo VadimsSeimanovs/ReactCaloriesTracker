@@ -53,7 +53,7 @@ const TabsScreen = () => (
 export default () => {
     const [isLoading, setIsLoading] = React.useState(true);
     const [userToken, setUserToken] = React.useState(null);    
-
+  
     const authContext = React.useMemo(() => {
       return {
         signIn: () => {
@@ -81,9 +81,9 @@ export default () => {
       return <Splash/>;
     }
 
-console.log("status: " + userStatus)
+// console.log("status: " + userStatus)
 
-// if(userStatus == false){
+// if(userStatus == false || userStatus == undefined){
 //   return ( 
 //     <AuthContext.Provider value={authContext}>
 //       <NavigationContainer theme={MyTheme}>
@@ -93,26 +93,36 @@ console.log("status: " + userStatus)
 //             component = { Login }
 //             options= {{headerShown: false}}
 //           />
-//           <RootStack.Screen 
-//             name = "NewAccount"
-//             component = { NewAccount }
+//           {/* <AuthStack.Screen
+//             name="ForgotPassword"
+//             component={ForgotPassword}
 //             options= {{headerShown: false}}
 //           />
-//           <RootStack.Screen 
-//             name = "SetGoal"
-//             component = { SetGoal }
+//           <AuthStack.Screen
+//             name="SetGoal"
+//             component={SetGoal}
 //             options= {{headerShown: false}}
 //           />
-//           <RootStack.Screen 
-//             name = "Signup2"
-//             component = { Signup2 }
+//           <AuthStack.Screen
+//             name="Signup2"
+//             component={Signup2}
 //             options= {{headerShown: false}}
 //           />
-//           <RootStack.Screen 
-//             name = "ForgotPassword"
-//             component = { ForgotPassword }
+//           <AuthStack.Screen
+//             name="VerifyCode"
+//             component={VerifyCode}
 //             options= {{headerShown: false}}
 //           />
+//           <AuthStack.Screen
+//             name="NewAccount"
+//             component={NewAccount}
+//             options= {{headerShown: false}}
+//           />
+//           <AuthStack.Screen
+//             name="ChangePassword"
+//             component={ChangePassword}
+//             options= {{headerShown: false}}
+//           /> */}
 //           <AuthStack.Screen
 //             name="Dashboard"
 //             component={Dashboard}
@@ -124,8 +134,6 @@ console.log("status: " + userStatus)
 //   )
 // }
 // else{
-//   console.log("in else: " + userStatus)
-
   return ( 
     <AuthContext.Provider value={authContext}>
       <NavigationContainer theme={MyTheme}>
@@ -249,4 +257,4 @@ console.log("status: " + userStatus)
     </AuthContext.Provider>
   )
 }
-// }
+//}
