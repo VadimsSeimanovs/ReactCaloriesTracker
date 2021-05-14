@@ -1,32 +1,60 @@
+import { Component } from "react"
 
-class CaloriesCalculator{
+export default class CaloriesCalculator extends Component{
     bmr
     totalCalories
     ideaBodyWeight
 
-    calculateMaleBmr(weight, height, age){
-        bmr = 66 + (6.3 * weight) + (12.7 * height) - (6.8 * age)
+    static calculateMaleBmr(weight, height, age){
+        bmr = 66 + (6.23 * weight) + (12.7 * height) - (6.8 * age)
+        return bmr
     }
 
-    calculateFemaleBmr(weight, height, age){
+    static calculateFemaleBmr(weight, height, age){
         bmr = 655 + (4.35 * weight) + (4.7 * height) - (4.7 * age)
+        return bmr
     }
 
-    formulaToMaintainHealhtMale(exerciseLevel){
-        if(exerciseLevel == 'no exercise'){
-            this.totalCalories = bmr * 1.2
+    static kgToPoundConversion(kg){
+        pounds = kg / 0.45
+        return pounds
+    }
+
+    static cmToInchesConversion(cm){
+        inches = 0.39 * cm
+        return inches
+     }
+
+    static footToInchesConversion(foot){
+        inches = 12 * foot
+        return inches
+      }
+
+    static formulaToMaintainHealhtMale(exerciseLevel, calculatedBmr){
+        if(exerciseLevel == 'No Exercise'){
+            this.totalCalories = calculatedBmr * 1.2
+            console.log("Test" + this.totalCalories)
+            return this.totalCalories
         }
         else if(exerciseLevel == '1-3 days'){
-            this.totalCalories = bmr * 1.375
+            this.totalCalories = calculatedBmr * 1.375
+            console.log("Test1" + this.totalCalories)
+            return this.totalCalories
         }
         else if(exerciseLevel == '3-5 days'){
-            this.totalCalories = bmr * 1.55
+            this.totalCalories = calculatedBmr * 1.55
+            console.log("Test2" + this.totalCalories)
+            return this.totalCalories
         }
         else if(exerciseLevel == '6-7 days'){
-            this.totalCalories = bmr * 1.725
+            this.totalCalories = calculatedBmr * 1.725
+            console.log("Test3 " + this.totalCalories)
+            return this.totalCalories
         }
-        else{
-            this.totalCalories = bmr * 1.9
+        else if(exerciseLevel == 'Extra'){
+            this.totalCalories = calculatedBmr * 1.9
+            console.log("Test4" + this.totalCalories)
+            return this.totalCalories
         }
     }
 
