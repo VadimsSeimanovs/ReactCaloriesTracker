@@ -124,8 +124,8 @@ console.log("status: " + userStatus)
               options= {{headerShown: false}}
             />
              <AuthStack.Screen
-              name="Login"
-              component={Login}
+              name="Dashboard"
+              component={Dashboard}
               options= {{headerShown: false}}
             />
             <AuthStack.Screen

@@ -22,28 +22,7 @@ export default class Dashboard extends React.Component {
         strokeWidth: 2, // optional, default 3
         barPercentage: 0.5,
         useShadowColorFromDataset: false // optional
-      };
-
-      const data2 = {
-        labels: ["May"],
-        datasets: [
-          {
-            data: [parseFloat(User.getWeight())]
-          }
-        ]
-      };
-
-      const barChartConfig = {
-        backgroundGradientFrom: "#85C0F9",
-        backgroundGradientFromOpacity: 1,
-        backgroundGradientTo: "#85C0F9",
-        backgroundGradientToOpacity: 1,
-        color: (opacity = 1) => `rgba(245, 105, 58, ${opacity})`,
-        strokeWidth: 2, // optional, default 3
-        barPercentage: 0.5,
-        useShadowColorFromDataset: false // optional
-      };
-      
+      }; 
         return (
             <View style={styles.container}>
               <Button title='My Account' onPress = { 
@@ -63,17 +42,6 @@ export default class Dashboard extends React.Component {
                 radius={40}
                 chartConfig={chartConfig}
                 hideLegend={false}
-              />
-
-              <Text>Weight Progress</Text>
-              <BarChart
-                style={{alignSelf:'center'}}
-                data={data2}
-                width={windowWidth}
-                height={220}
-                fromZero={true}
-                chartConfig={barChartConfig}
-                verticalLabelRotation={30}
               />
             </View>
         );
