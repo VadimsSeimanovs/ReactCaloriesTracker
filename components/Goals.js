@@ -1,9 +1,10 @@
 import React from 'react';
 import { View } from 'react-native';
 import { BarChart } from 'react-native-chart-kit';
+import { Text , TodoList} from 'react-native-elements';
 import styles from './styles/button';
+import { Dimensions } from 'react-native';
 import User from './User';
-import styles  from './styles/button'
 import { SafeAreaView } from 'react-native';
 
 export default class Goals extends React.Component{
@@ -13,7 +14,7 @@ export default class Goals extends React.Component{
         labels: ["May"],
         datasets: [
           {
-            data: [parseFloat(User.getWeight())]
+            data: [parseFloat(70)]
           }
         ]
       };
@@ -30,7 +31,7 @@ export default class Goals extends React.Component{
       return(
         <SafeAreaView>
           <View style = {styles.container}>
-          <Text>Weight Progress</Text>
+          <Text h3 style={{alignSelf:'center'}}>Weight Progress</Text>
               <BarChart
                 style={{alignSelf:'center'}}
                 data={data2}

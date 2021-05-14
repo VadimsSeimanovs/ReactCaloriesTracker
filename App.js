@@ -27,6 +27,7 @@ import AddFood from './components/AddFood'
 import LogWater from './components/LogWater'
 import UpdatePassword from './components/UpdatePassword';
 import LogSnacks from './components/LogSnacks'
+import Goals from './components/Goals'
 
 const MyTheme = {
   ...DefaultTheme,
@@ -45,7 +46,7 @@ const TabsScreen = () => (
   <Tabs.Navigator initialRouteName={'Dashboard'}>
     <Tabs.Screen name="Summary" component={Dashboard}/>
     <Tabs.Screen name="Log food" component={LogFood}/>
-    {/* <Tabs.Screen name="SetGoal" component={SetGoal}/> */}
+    <Tabs.Screen name="Goals" component={Goals}/>
     <Tabs.Screen name="MyAccount" component={MyAccount}/>
 </Tabs.Navigator>
 );
@@ -84,54 +85,54 @@ export default () => {
 // console.log("status: " + userStatus)
 
 // if(userStatus == false || userStatus == undefined){
-//   return ( 
-//     <AuthContext.Provider value={authContext}>
-//       <NavigationContainer theme={MyTheme}>
-//         <RootStack.Navigator>
-//           <RootStack.Screen 
-//             name = "Login"
-//             component = { Login }
-//             options= {{headerShown: false}}
-//           />
-//           {/* <AuthStack.Screen
-//             name="ForgotPassword"
-//             component={ForgotPassword}
-//             options= {{headerShown: false}}
-//           />
-//           <AuthStack.Screen
-//             name="SetGoal"
-//             component={SetGoal}
-//             options= {{headerShown: false}}
-//           />
-//           <AuthStack.Screen
-//             name="Signup2"
-//             component={Signup2}
-//             options= {{headerShown: false}}
-//           />
-//           <AuthStack.Screen
-//             name="VerifyCode"
-//             component={VerifyCode}
-//             options= {{headerShown: false}}
-//           />
-//           <AuthStack.Screen
-//             name="NewAccount"
-//             component={NewAccount}
-//             options= {{headerShown: false}}
-//           />
-//           <AuthStack.Screen
-//             name="ChangePassword"
-//             component={ChangePassword}
-//             options= {{headerShown: false}}
-//           /> */}
-//           <AuthStack.Screen
-//             name="Dashboard"
-//             component={Dashboard}
-//             options= {{headerShown: false}}
-//           />
-//         </RootStack.Navigator>
-//       </NavigationContainer>
-//     </AuthContext.Provider>
-//   )
+  return ( 
+    <AuthContext.Provider value={authContext}>
+      <NavigationContainer theme={MyTheme}>
+        <RootStack.Navigator>
+          <RootStack.Screen 
+            name = "Login"
+            component = { Login }
+            options= {{headerShown: false}}
+          />
+          <AuthStack.Screen
+            name="ForgotPassword"
+            component={ForgotPassword}
+            options= {{headerShown: false}}
+          />
+          <AuthStack.Screen
+            name="SetGoal"
+            component={SetGoal}
+            options= {{headerShown: false}}
+          />
+          <AuthStack.Screen
+            name="Signup2"
+            component={Signup2}
+            options= {{headerShown: false}}
+          />
+          <AuthStack.Screen
+            name="VerifyCode"
+            component={VerifyCode}
+            options= {{headerShown: false}}
+          />
+          <AuthStack.Screen
+            name="NewAccount"
+            component={NewAccount}
+            options= {{headerShown: false}}
+          />
+          <AuthStack.Screen
+            name="ChangePassword"
+            component={ChangePassword}
+            options= {{headerShown: false}}
+          />
+          <AuthStack.Screen
+            name="Dashboard"
+            component={Dashboard}
+            options= {{headerShown: false}}
+          />
+        </RootStack.Navigator>
+      </NavigationContainer>
+    </AuthContext.Provider>
+  )
 // }
 // else{
   return ( 
@@ -250,6 +251,11 @@ export default () => {
           <AuthStack.Screen
             name="LogSnacks"
             component={LogSnacks}
+            options= {{headerShown: false}}
+          />
+          <AuthStack.Screen
+            name="Goals"
+            component={Goals}
             options= {{headerShown: false}}
           />
         </RootStack.Navigator>
