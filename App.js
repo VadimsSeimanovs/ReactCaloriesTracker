@@ -32,7 +32,7 @@ const Tabs = createBottomTabNavigator();
 const RootStack = createStackNavigator();
 
 const TabsScreen = () => (
-  <Tabs.Navigator initialRouteName={'Dashboard'}>
+  <Tabs.Navigator initialRouteName={'NewAccount'}>
     <Tabs.Screen name="Summary" component={Dashboard}/>
     <Tabs.Screen name="Log food" component={LogFood}/>
     <Tabs.Screen name="SetGoal" component={SetGoal}/>

@@ -12,6 +12,9 @@ var goal;
 var goalWeight;
 var goalWeightType;
 var uid;
+var bmr;
+var totalCalories;
+var exerciseLevel;
 
 export default class User extends Component{
 
@@ -132,5 +135,32 @@ export default class User extends Component{
 
     static getUid(){
         return uid;
+    }
+
+    static setBMR(userBMR){
+        bmr = userBMR
+        console.log("User BMR: " + bmr)
+    }
+
+    static getBMR(){
+        return bmr;
+    }
+
+    static setTotalCalories(userCalories){
+        totalCalories = userCalories
+        console.log("User totalCal: " + totalCalories)
+    }
+
+    static getTotalCalories(){
+        return totalCalories;
+    }
+
+    static setExerciseLevel(userExerciseLevel){
+        exerciseLevel = userExerciseLevel
+        console.log("User Exercise: " + exerciseLevel)
+    }
+
+    static getExerciseLevel(){
+        return exerciseLevel;
     }
 }

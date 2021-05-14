@@ -6,6 +6,7 @@ import Icon from 'react-native-vector-icons/FontAwesome';
 import RadioForm from 'react-native-simple-radio-button';
 import UserProvider from './Firebase';
 import User from './User';
+import CaloriesCalculator from './CaloriesCalculator';
 
 var weight_props = [
   {label: 'Kg', value: 'Kg' },
@@ -25,7 +26,8 @@ export default class NewAccount extends Component{
     weightType: 'Kg',
     height: '',
     heightType: 'Meters',
-    gender: 'female'
+    gender: 'female',
+    exerciseLevel: 'No Exercise'
   }
 
   onChangeText = (key, val) => {
@@ -42,7 +44,41 @@ export default class NewAccount extends Component{
         User.setHeight(this.state.height);
         User.setHeightType(this.state.heightType);
         User.setGender(this.state.gender);
-        this.props.navigation.navigate('SetGoal', {name: 'Set Goal'});
+
+        var pounds
+        var inches
+        
+        if(this.state.weightType == 'Kg'){
+          pounds = CaloriesCalculator.kgToPoundConversion(this.state.weight)
+        }
+        if(this.state.heightType == 'Meters'){
+          inches = CaloriesCalculator.cmToInchesConversion(this.state.height)
+        }
+        if(this.state.heightType == 'Foot'){
+          inches = CaloriesCalculator.cmToInchesConversion(this.state.height)
+        }
+
+        if(this.state.gender == "Female"){
+          bmr = CaloriesCalculator.calculateFemaleBmr(pounds, inches, this.state.age)
+          totalCalories = CaloriesCalculator.formulaToMaintainHealhtMale(this.state.exerciseLevel, bmr)
+          User.setBMR(bmr)
+          User.setTotalCalories(totalCalories)
+
+        }else{
+          bmr = CaloriesCalculator.calculateMaleBmr(pounds, inches, this.state.age)
+          totalCalories = CaloriesCalculator.formulaToMaintainHealhtMale(this.state.exerciseLevel, bmr)
+          User.setBMR(bmr)
+          User.setTotalCalories(totalCalories)
+        }
+
+        console.log("Pounds: " + pounds + "inches: " + inches)
+        // if(this.state.gender == 'female'){
+        //   CaloriesCalculator.
+        // }
+        // }else{
+
+        // }
+        this.props.navigation.navigate('Summary', {name: 'Dashboard'});
     }
   }
 
@@ -82,6 +118,24 @@ export default class NewAccount extends Component{
         radio_props={height_props}
         initial={0}
         onPress={(value) => {this.setState({heightType:value})}}
+      />
+
+      <Text h3>Exercise Level:</Text> 
+      <DropDownPicker
+          items={[
+              {label: 'No Exercise', value: 'No Exercise'},
+              {label: '3-5 days', value: '3-5 days'},
+              {label: '6-7 days', value: '6-7 days'},
+              {label: 'Extra', value: 'Extra'},
+          ]}
+          defaultValue={this.state.exerciseLevel}
+          containerStyle={{height: 40}}
+          style={{backgroundColor: '#fafafa'}}
+          itemStyle={{
+              justifyContent: 'flex-start'
+          }}
+          dropDownStyle={{backgroundColor: '#fafafa'}}
+          onChangeItem={(value) => {this.setState({exerciseLevel:value.value})}}
       />
 
       <Text h3>Enter gender:</Text> 
