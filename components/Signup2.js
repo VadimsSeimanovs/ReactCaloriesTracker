@@ -3,6 +3,7 @@ import { View } from 'react-native';
 import { Text, Input, Button } from 'react-native-elements'
 import User from './User'
 import UserProvider from './Firebase'
+import { SafeAreaView } from 'react-native';
 
 var userRegistered = false;
 export default class Signup2 extends Component {
@@ -106,12 +107,12 @@ export default class Signup2 extends Component {
 
   render(){
       return (
+        <SafeAreaView>
           <View>
             <Text h3>Name:</Text>
             <Input
               placeholder='Name'
               errorStyle={{ color: 'red' }}
-              //errorMessage='Check the name and try again'
               onChangeText={val => this.onChangeText('name', val)}
             />
 
@@ -121,7 +122,6 @@ export default class Signup2 extends Component {
             <Input
               placeholder='Email address'
               errorStyle={{ color: 'red' }}
-              //errorMessage='Check the email address and try again'
               onChangeText={val => this.onChangeText('email', val)}
             />
 
@@ -131,7 +131,6 @@ export default class Signup2 extends Component {
             <Input
               placeholder='Password'
               errorStyle={{ color: 'red' }}
-              //errorMessage='Check the password and try again'
               onChangeText={val => this.onChangeText('password', val)}
             />
 
@@ -151,6 +150,7 @@ export default class Signup2 extends Component {
               () => {{this.checkUserInput()} {this.setNameErrorMessage()} {this.setEmailErrorMessage()} {this.setPasswordErrorMessage()} {this.setPasswordConfirmErrorMessage()}}
             }/>
           </View>
+          </SafeAreaView>
       );
   }
 }

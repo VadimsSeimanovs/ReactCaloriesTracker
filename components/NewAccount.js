@@ -1,5 +1,5 @@
 import React, { Component, useState } from 'react';
-import { View } from 'react-native';
+import { View, SafeAreaView } from 'react-native';
 import { Text, Input, Button } from 'react-native-elements'
 import DropDownPicker from 'react-native-dropdown-picker';
 import Icon from 'react-native-vector-icons/FontAwesome';
@@ -7,6 +7,8 @@ import RadioForm from 'react-native-simple-radio-button';
 import UserProvider from './Firebase';
 import User from './User';
 import CaloriesCalculator from './CaloriesCalculator';
+import styles from './styles/button';
+import { ScrollView } from 'react-native-gesture-handler';
 
 var weight_props = [
   {label: 'Kg', value: 'Kg' },
@@ -61,25 +63,19 @@ export default class NewAccount extends Component{
 
         if(this.state.gender == "Female"){
           bmr = CaloriesCalculator.calculateFemaleBmr(pounds, inches, this.state.age)
-          totalCalories = CaloriesCalculator.formulaToMaintainHealhtMale(this.state.exerciseLevel, bmr)
+          let totalCalories = CaloriesCalculator.formulaToMaintainHealhtMale(this.state.exerciseLevel, bmr)
           User.setBMR(bmr)
           User.setTotalCalories(totalCalories)
 
         }else{
           bmr = CaloriesCalculator.calculateMaleBmr(pounds, inches, this.state.age)
-          totalCalories = CaloriesCalculator.formulaToMaintainHealhtMale(this.state.exerciseLevel, bmr)
+          let totalCalories = CaloriesCalculator.formulaToMaintainHealhtMale(this.state.exerciseLevel, bmr)
           User.setBMR(bmr)
           User.setTotalCalories(totalCalories)
         }
 
         console.log("Pounds: " + pounds + "inches: " + inches)
-        // if(this.state.gender == 'female'){
-        //   CaloriesCalculator.
-        // }
-        // }else{
-
-        // }
-        this.props.navigation.navigate('Summary', {name: 'Dashboard'});
+        this.props.navigation.navigate('SetGoal', {name: 'SetGoal'});
     }
   }
 
@@ -139,86 +135,108 @@ export default class NewAccount extends Component{
 
   render(){
     return(
-    <View>
-      <Text h3>Enter age:</Text>
-      <Input
-        placeholder='Age'
-        errorStyle={{ color: 'red' }}
-        onFocus = {this.setErrorMessage}
-        onChangeText={val => this.onChangeText('age', val)}
-      />
+      <SafeAreaView>
+        <ScrollView>
+      <View>
+        <Text h2 style={{alignSelf:'center'}}>Create account</Text>
+        <View style={styles.spaceBetweenButtons}></View>
+        <Text h3>Enter age:</Text>
+        <Input
+          placeholder='Age'
+          errorStyle={{ color: 'red' }}
+          onFocus = {this.setErrorMessage}
+          onChangeText={val => this.onChangeText('age', val)}
+        />
 
-      {this.state.isValid && <Text style={{color: 'red'}}>Check the age and try again</Text>}
+        {this.state.isValid && <Text style={{color: 'red'}}>Check the age and try again</Text>}
 
-      <View></View>
-      <Text h3>Enter weight:</Text>
-      <Input
-        placeholder='Weight'
-        errorStyle={{ color: 'red' }}
-        onChangeText={val => this.onChangeText('weight', val)}
-      />
-      
-      {this.state.isValid && <Text style={{color: 'red'}}>Check the weight and try again</Text>}
+        <View style={styles.spaceBetweenButtons}></View>
+        <Text h3>Enter weight:</Text>
+        <Input
+          placeholder='Weight'
+          errorStyle={{ color: 'red' }}
+          onChangeText={val => this.onChangeText('weight', val)}
+        />
+        
+        {this.state.isValid && <Text style={{color: 'red'}}>Check the weight and try again</Text>}
 
-      <RadioForm
-        radio_props={weight_props}
-        initial={0}
-        onPress={(value) => {this.setState({weightType:value})}}
-      />
+        <RadioForm
+          radio_props={weight_props}
+          initial={0}
+          onPress={(value) => {this.setState({weightType:value})}}
+        />
 
-      <Text h3>Enter height:</Text>
-      <Input
-        placeholder='Height'
-        errorStyle={{ color: 'red' }}
-        onChangeText={val => this.onChangeText('height', val)}
-      />
+        <Text h3>Enter height:</Text>
+        <Input
+          placeholder='Height'
+          errorStyle={{ color: 'red' }}
+          onChangeText={val => this.onChangeText('height', val)}
+        />
 
-      {this.state.isValid && <Text style={{color: 'red'}}>Check the height and try again</Text>}
+        {this.state.isValid && <Text style={{color: 'red'}}>Check the height and try again</Text>}
 
-      <RadioForm
-        radio_props={height_props}
-        initial={0}
-        onPress={(value) => {this.setState({heightType:value})}}
-      />
+        <RadioForm
+          radio_props={height_props}
+          initial={0}
+          onPress={(value) => {this.setState({heightType:value})}}
+        />
 
-      <Text h3>Exercise Level:</Text> 
-      <DropDownPicker
-          items={[
-              {label: 'No Exercise', value: 'No Exercise'},
-              {label: '3-5 days', value: '3-5 days'},
-              {label: '6-7 days', value: '6-7 days'},
-              {label: 'Extra', value: 'Extra'},
-          ]}
-          defaultValue={this.state.exerciseLevel}
-          containerStyle={{height: 40}}
-          style={{backgroundColor: '#fafafa'}}
-          itemStyle={{
-              justifyContent: 'flex-start'
-          }}
-          dropDownStyle={{backgroundColor: '#fafafa'}}
-          onChangeItem={(value) => {this.setState({exerciseLevel:value.value})}}
-      />
+        <Text h3>Exercise Level:</Text> 
+        <DropDownPicker
+            items={[
+                {label: 'No Exercise', value: 'No Exercise'},
+                {label: '3-5 days', value: '3-5 days'},
+                {label: '6-7 days', value: '6-7 days'},
+                {label: 'Extra', value: 'Extra'},
+            ]}
+            defaultValue={this.state.exerciseLevel}
+            containerStyle={{height: 40}}
+            style={{backgroundColor: '#fafafa'}}
+            itemStyle={{
+                justifyContent: 'flex-start'
+            }}
+            dropDownStyle={{backgroundColor: '#fafafa'}}
+            onChangeItem={(value) => {this.setState({exerciseLevel:value.value})}}
+        />
 
-      <Text h3>Enter gender:</Text> 
-      <DropDownPicker
-          items={[
-              {label: 'Female', value: 'female', icon: () => <Icon name="female" size={18} color="#900" />},
-              {label: 'Male', value: 'male', icon: () => <Icon name="male" size={18} color="#900" />},
-          ]}
-          defaultValue={this.state.gender}
-          containerStyle={{height: 40}}
-          style={{backgroundColor: '#fafafa'}}
-          itemStyle={{
-              justifyContent: 'flex-start'
-          }}
-          dropDownStyle={{backgroundColor: '#fafafa'}}
-          onChangeItem={(value) => {this.setState({gender:value.value})}}
-      />
+        <View style={styles.spaceBetweenButtons}></View>
+        <View style={styles.spaceBetweenButtons}></View>
+        <View style={styles.spaceBetweenButtons}></View>
+        <View style={styles.spaceBetweenButtons}></View>
+        <View style={styles.spaceBetweenButtons}></View>
 
-      <Button title='Continue' raised onPress= {
-        () => {{this.checkUserInput()} {this.setAgeErrorMessage()} {this.setWeightErrorMessage()} {this.setHeightErrorMessage()}}
-      }/>
-    </View>
+        <Text h3>Enter gender:</Text> 
+        <DropDownPicker
+            items={[
+                {label: 'Female', value: 'female', icon: () => <Icon name="female" size={18} color="#900" />},
+                {label: 'Male', value: 'male', icon: () => <Icon name="male" size={18} color="#900" />},
+            ]}
+            defaultValue={this.state.gender}
+            containerStyle={{height: 40}}
+            style={{backgroundColor: '#fafafa'}}
+            itemStyle={{
+                justifyContent: 'flex-start'
+            }}
+            dropDownStyle={{backgroundColor: '#fafafa'}}
+            onChangeItem={(value) => {this.setState({gender:value.value})}}
+        />
+
+        <View style={styles.spaceBetweenButtons}></View>
+        <View style={styles.spaceBetweenButtons}></View>
+        <View style={styles.spaceBetweenButtons}></View>
+        <View style={styles.spaceBetweenButtons}></View>
+
+
+        <Button title='Continue' raised onPress= {
+          () => {{this.checkUserInput()} {this.setAgeErrorMessage()} {this.setWeightErrorMessage()} {this.setHeightErrorMessage()}}
+        }/>
+
+        <View style={styles.spaceBetweenButtons}></View>
+        <View style={styles.spaceBetweenButtons}></View>
+
+      </View>
+      </ScrollView>
+    </SafeAreaView>
     )
   }
 }

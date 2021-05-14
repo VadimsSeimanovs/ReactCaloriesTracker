@@ -41,6 +41,7 @@ class UserProvider extends Component{
 
    static async registerUser(userEmail, userPassword){
     firebase.auth().createUserWithEmailAndPassword(userEmail, userPassword)
+    .then(userLogedIn = true)
     .catch(function(error){
       var errorCode = error.code;
       var errorMessage = error.message;
@@ -62,7 +63,7 @@ class UserProvider extends Component{
         alert('Wrong password.');
       } else {
         userExists = false;
-        checkUserLogedIn()
+        //this.checkUserLogedIn
         alert(errorMessage);
       }
     });
@@ -72,9 +73,11 @@ class UserProvider extends Component{
     firebase.auth().onAuthStateChanged(function(user){
       if(user){
         userLogedIn = true;
+        //return userLogedIn
       }
       else{
         userLogedIn = false;
+        //return userLogedIn
       }
     })
   }
@@ -152,7 +155,7 @@ class UserProvider extends Component{
       clearInterval(this.intervalId);
     }
     try {
-      const currentUser = await getUserDocument(userId);
+      const currentUser = await firebase.getUserDocument(userId);
         if (currentUser.email) {
           this.setState({ currentUser, isLoggedIn: true });
           clearInterval(this.intervalId);

@@ -25,7 +25,6 @@ export default class Login extends React.Component {
         if(UserProvider.getUserExistance() == true){
           UserProvider.getUserLogInStatus()
             this.props.navigation.navigate('Dashboard');
-            //Here fill the user class with the user details, pass this information to the dashboard
         }
     } else {
      alert('Enter email address and password');
@@ -42,7 +41,6 @@ export default class Login extends React.Component {
             placeholderTextColor='#707070'
             placeholder='Email Address'
             errorStyle={{ color: 'red' }}
-            // errorMessage='Check the email address and try again'
             onChangeText={val=> this.onChangeText('email', val)}
           />
 
@@ -51,14 +49,11 @@ export default class Login extends React.Component {
             placeholderTextColor='#707070'
             placeholder='Password'
             errorStyle={{ color: 'red' }}
-            // errorMessage='Check the password and try again'
             onChangeText={val=> this.onChangeText('password', val)}
           />
 
           <Button title='Login' raised 
-          // onPress = {() => this.checkUserInput()}
-          onPress = { 
-            () => navigation.navigate('Dashboard')} 
+          onPress = {() => this.checkUserInput()}
             buttonStyle={{backgroundColor: '#0F2080'}}
           />
 

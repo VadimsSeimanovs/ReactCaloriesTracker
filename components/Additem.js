@@ -37,6 +37,7 @@ export default class AddItem extends React.Component {
 
   render(){
     return (
+        <SafeAreaView>
       <ScrollView>
           <Text h2 style={styles.textInputLabel}>Add Item</Text>
           <View style={styles.spaceBetweenButtons}></View>
@@ -108,6 +109,7 @@ export default class AddItem extends React.Component {
         />
           <StatusBar style="auto" />
       </ScrollView>
+      </SafeAreaView>
   );
 }
 }

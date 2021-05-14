@@ -1,11 +1,13 @@
 import { StatusBar } from 'expo-status-bar';
 import React from 'react';
+import { SafeAreaView } from 'react-native';
 import { View } from 'react-native';
 import { Text, Input, Button } from 'react-native-elements'
 
 export default class ForgotPassword extends React.Component {
     render(){
         return (
+          <SafeAreaView>
             <View>
                 <Text h3>Email address:</Text>
                 <Input
@@ -18,6 +20,7 @@ export default class ForgotPassword extends React.Component {
                   () => {this.props.navigation.navigate('VerifyCode')}
                 }></Button>
             </View>
+          </SafeAreaView>
         );
     }
 }

@@ -33,7 +33,7 @@ export default class UpdateGoal extends Component {
       User.setGoalWeight(this.state.goalWeight);
       User.setGoalWeightType(this.state.goalWeightType);
       User.setGoal(this.state.goalType);
-      this.props.navigation.navigate('Signup2');
+      this.props.navigation.navigate('Dashboard');
     }
   }
 

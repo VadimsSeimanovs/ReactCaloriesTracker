@@ -4,6 +4,7 @@ import { BarChart } from 'react-native-chart-kit';
 import styles from './styles/button';
 import User from './User';
 import styles  from './styles/button'
+import { SafeAreaView } from 'react-native';
 
 export default class Goals extends React.Component{
     render(){
@@ -27,9 +28,9 @@ export default class Goals extends React.Component{
         useShadowColorFromDataset: false // optional
       };
       return(
+        <SafeAreaView>
           <View style = {styles.container}>
-
-         <Text>Weight Progress</Text>
+          <Text>Weight Progress</Text>
               <BarChart
                 style={{alignSelf:'center'}}
                 data={data2}
@@ -40,6 +41,7 @@ export default class Goals extends React.Component{
                 verticalLabelRotation={30}
               />
           </View>
+        </SafeAreaView>
       )
     }
 }

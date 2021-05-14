@@ -1,10 +1,12 @@
 import React from 'react';
+import { SafeAreaView } from 'react-native';
 import { View } from 'react-native';
 import { Text, Input, Button } from 'react-native-elements'
 
 export default class VerifyCode extends React.Component {
     render(){
         return (
+            <SafeAreaView>
             <View>
                 <Text h3>Enter code:</Text>
                 <Input
@@ -17,6 +19,7 @@ export default class VerifyCode extends React.Component {
                     () => {this.props.navigation.navigate('ChangePassword')}
                 }/>
             </View>
+            </SafeAreaView>
         );
     }
 }

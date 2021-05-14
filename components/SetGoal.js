@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import { SafeAreaView } from 'react-native';
 import { View } from 'react-native';
 import { Text, Input, Button } from 'react-native-elements'
 import RadioForm from 'react-native-simple-radio-button';
@@ -57,6 +58,7 @@ export default class SetGoal extends Component {
 
     render(){
         return (
+          <SafeAreaView>
           <View>
             <Text h3>What do you want to achieve?</Text>
             <RadioForm
@@ -87,6 +89,7 @@ export default class SetGoal extends Component {
               () => {{this.checkUserInput()} {this.setWeightErrorMessage()}}
             }/>
           </View>
+          </SafeAreaView>
         );
       }
 }

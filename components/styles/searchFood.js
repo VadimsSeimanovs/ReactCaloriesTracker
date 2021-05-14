@@ -17,6 +17,13 @@ const stylesSearchFood = StyleSheet.create({
     imageStyles:{
         width: 150,
         height: 150
+    },
+    imageStyleWater:{
+        width: 150,
+        height: 150,
+        alignSelf: 'center',
+        marginLeft: 140,
+                
     }
 });
 

@@ -12,9 +12,11 @@ export default class MyAccount extends React.Component {
                 <Text h2 style={styles.textInputLabel}>My Account</Text>
 
                 <View style={styles.spaceBetweenButtons}></View>
-                <Text h4>{User.getName}</Text>
+                {/* <Text h4>{User.getName}</Text> */}
+                <Text h4>Elena Secara</Text>
                 <View style={styles.spaceBetweenButtons}></View>
-                <Text h4>{User.getGender}, {User.getAge}, {User.getHeight}</Text>
+                {/* <Text h4>{User.getGender}, {User.getAge}, {User.getHeight}</Text> */}
+                <Text h4>female, 22, 157</Text>
                 <View style={styles.spaceBetweenButtons}></View>
 
                 <Button title='Update goal' raised onPress= {
@@ -30,7 +32,7 @@ export default class MyAccount extends React.Component {
                 <View style={styles.spaceBetweenButtons}></View>
 
                 <Button title='Change password' raised onPress= {
-                  () => {this.props.navigation.navigate('ChangePassword')}}>
+                  () => {this.props.navigation.navigate('UpdatePassword')}}>
                 </Button>
 
                 <View style={styles.spaceBetweenButtons}></View>

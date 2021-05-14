@@ -1,5 +1,6 @@
 import { StatusBar } from 'expo-status-bar';
 import React from 'react';
+import { SafeAreaView } from 'react-native';
 import { View } from 'react-native';
 import { Button, Text } from 'react-native-elements'
 import styles  from './styles/button'
@@ -8,6 +9,7 @@ export default class LogFood extends React.Component {
   render(){
     console.log('in log food')
     return (
+      <SafeAreaView>
       <View style={styles.container}>
         <Text h2 style={styles.textInputLabel}>Add food</Text>
         <View style={styles.spaceBetweenButtons}></View>
@@ -60,6 +62,7 @@ export default class LogFood extends React.Component {
         />
           <StatusBar style="auto" />
       </View>
+      </SafeAreaView>
   );
 }
 }
