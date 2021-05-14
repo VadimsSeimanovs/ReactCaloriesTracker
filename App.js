@@ -17,6 +17,13 @@ import LogFood from './components/LogFood'
 import SearchFood from './components/SearchFood';
 import FoodInformation from './components/FoodInformation'
 import Firebase from './components/Firebase'
+import MyAccount from './components/MyAccount'
+import UpdateGoal from './components/UpdateGoal'
+import UpdateDetails from './components/UpdateDetails'
+import MealSettings from './components/MealSettings'
+import Nutrition from './components/Nutrition'
+import ChangePassword from './components/ChangePassword'
+import AddFood from './components/AddFood'
 
 const MyTheme = {
   ...DefaultTheme,
@@ -111,7 +118,6 @@ console.log("status: " + userStatus)
               component={SearchFood}
               options= {{headerShown: false}}
             />
-
             <AuthStack.Screen
               name="FoodInformation"
               component={FoodInformation}
@@ -135,6 +141,41 @@ console.log("status: " + userStatus)
             <AuthStack.Screen
               name="NewAccount"
               component={NewAccount}
+              options= {{headerShown: false}}
+            />
+            <AuthStack.Screen
+              name="MyAccount"
+              component={MyAccount}
+              options= {{headerShown: false}}
+            />
+            <AuthStack.Screen
+              name="UpdateGoal"
+              component={UpdateGoal}
+              options= {{headerShown: false}}
+            />
+            <AuthStack.Screen
+              name="UpdateDetails"
+              component={UpdateDetails}
+              options= {{headerShown: false}}
+            />
+            <AuthStack.Screen
+              name="MealSettings"
+              component={MealSettings}
+              options= {{headerShown: false}}
+            />
+            <AuthStack.Screen
+              name="Nutrition"
+              component={Nutrition}
+              options= {{headerShown: false}}
+            />
+            <AuthStack.Screen
+              name="ChangePassword"
+              component={ChangePassword}
+              options= {{headerShown: false}}
+            />
+             <AuthStack.Screen
+              name="AddFood"
+              component={AddFood}
               options= {{headerShown: false}}
             />
           </RootStack.Navigator>

@@ -67,6 +67,8 @@ const fetchApiCallTitles = () => {
     return (
       <SafeAreaView>
           <View>
+          <Text h2 style={styles.textInputLabel}>Search food</Text>
+          <View style={styles.spaceBetweenButtons}></View>
             <Input style={styles.textInput}
                 placeholderTextColor='#707070'
                 placeholder='Homemade recipe'

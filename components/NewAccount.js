@@ -18,15 +18,18 @@ var height_props = [
 ];
 
 export default class NewAccount extends Component{
-
+  
   state = {
     age: '',
     weight: '',
     weightType: 'Kg',
     height: '',
     heightType: 'Meters',
-    gender: 'female'
+    gender: 'female',
+    isValid: false
   }
+
+  
 
   onChangeText = (key, val) => {
     this.setState({ [key]: val })
@@ -46,6 +49,60 @@ export default class NewAccount extends Component{
     }
   }
 
+  setAgeErrorMessage = () => {
+    const { age } = this.state
+    if({age}.length > 0){
+      tempData.push({
+        age, 
+        todos: []
+      })
+
+      this.setState({age: ''})
+      this.setState({isValid: false})
+      this.props.closeModal()
+    }else{
+      ({age}.length = 0)
+      this.setState({isValid: true})
+      return
+    }
+  }
+
+  setWeightErrorMessage = () => {
+    const { weight } = this.state
+    if({weight}.length > 0){
+      tempData.push({
+        weight, 
+        todos: []
+      })
+
+      this.setState({weight: ''})
+      this.setState({isValid: false})
+      this.props.closeModal()
+    }else{
+      ({weight}.length = 0)
+      this.setState({isValid: true})
+      return
+    }
+  }
+
+  setHeightErrorMessage = () => {
+    const { height } = this.state
+    if({height}.length > 0){
+      tempData.push({
+        height, 
+        todos: []
+      })
+
+      this.setState({height: ''})
+      this.setState({isValid: false})
+      this.props.closeModal()
+    }else{
+      ({height}.length = 0)
+      this.setState({isValid: true})
+      return
+    }
+  }
+
   render(){
     return(
     <View>
@@ -53,17 +110,22 @@ export default class NewAccount extends Component{
       <Input
         placeholder='Age'
         errorStyle={{ color: 'red' }}
+        onFocus = {this.setErrorMessage}
         onChangeText={val => this.onChangeText('age', val)}
       />
 
+      {this.state.isValid && <Text style={{color: 'red'}}>Check the age and try again</Text>}
+
+      <View></View>
       <Text h3>Enter weight:</Text>
       <Input
         placeholder='Weight'
         errorStyle={{ color: 'red' }}
-        //errorMessage='Check the weight and try again'
         onChangeText={val => this.onChangeText('weight', val)}
       />
       
+      {this.state.isValid && <Text style={{color: 'red'}}>Check the weight and try again</Text>}
+
       <RadioForm
         radio_props={weight_props}
         initial={0}
@@ -74,9 +136,10 @@ export default class NewAccount extends Component{
       <Input
         placeholder='Height'
         errorStyle={{ color: 'red' }}
-        //errorMessage='Check the height and try again'
         onChangeText={val => this.onChangeText('height', val)}
       />
+
+      {this.state.isValid && <Text style={{color: 'red'}}>Check the height and try again</Text>}
 
       <RadioForm
         radio_props={height_props}
@@ -101,7 +164,7 @@ export default class NewAccount extends Component{
       />
 
       <Button title='Continue' raised onPress= {
-        () => {this.checkUserInput()}
+        () => {{this.checkUserInput()} {this.setAgeErrorMessage()} {this.setWeightErrorMessage()} {this.setHeightErrorMessage()}}
       }/>
     </View>
     )

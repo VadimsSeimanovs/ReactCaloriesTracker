@@ -6,6 +6,12 @@ const styles = StyleSheet.create({
         marginRight: 20,
         justifyContent: 'space-between'
     },
+    containerS:{
+        flex: 0.2,
+        justifyContent: "space-evenly",
+        padding: 20,
+        marginTop: 10,
+    },
     spaceBetweenButtons:{
         marginTop: 20
     },

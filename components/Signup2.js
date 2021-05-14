@@ -10,7 +10,8 @@ export default class Signup2 extends Component {
     name: '',
     email: '',
     password: '',
-    confirmPassword: ''
+    confirmPassword: '',
+    isValid: false
   }
 
   onChangeText = (key, val) => {
@@ -30,7 +31,79 @@ export default class Signup2 extends Component {
       this.props.navigation.navigate('Dashboard');
     }
   }
+
+  setNameErrorMessage = () => {
+    const { name } = this.state
+    if({name}.length > 0){
+      tempData.push({
+        name, 
+        todos: []
+      })
+
+      this.setState({name: ''})
+      this.setState({isValid: false})
+      this.props.closeModal()
+    }else{
+      ({name}.length = 0)
+      this.setState({isValid: true})
+      return
+    }
+  }
+
+  setEmailErrorMessage = () => {
+    const { email } = this.state
+    if({email}.length > 0){
+      tempData.push({
+        email, 
+        todos: []
+      })
+
+      this.setState({email: ''})
+      this.setState({isValid: false})
+      this.props.closeModal()
+    }else{
+      ({email}.length = 0)
+      this.setState({isValid: true})
+      return
+    }
+  }
+
+  setPasswordErrorMessage = () => {
+    const { password } = this.state
+    if({password}.length > 0){
+      tempData.push({
+        password, 
+        todos: []
+      })
+
+      this.setState({password: ''})
+      this.setState({isValid: false})
+      this.props.closeModal()
+    }else{
+      ({password}.length = 0)
+      this.setState({isValid: true})
+      return
+    }
+  }
   
+  setPasswordConfirmErrorMessage = () => {
+    const { confirmPassword } = this.state
+    if({confirmPassword}.length > 0){
+      tempData.push({
+        confirmPassword, 
+        todos: []
+      })
+
+      this.setState({confirmPassword: ''})
+      this.setState({isValid: false})
+      this.props.closeModal()
+    }else{
+      ({confirmPassword}.length = 0)
+      this.setState({isValid: true})
+      return
+    }
+  }
+
   render(){
       return (
           <View>
@@ -42,6 +115,8 @@ export default class Signup2 extends Component {
               onChangeText={val => this.onChangeText('name', val)}
             />
 
+            {this.state.isValid && <Text style={{color: 'red'}}>Check the name and try again</Text>}
+
             <Text h3>Email address:</Text>
             <Input
               placeholder='Email address'
@@ -49,6 +124,8 @@ export default class Signup2 extends Component {
               //errorMessage='Check the email address and try again'
               onChangeText={val => this.onChangeText('email', val)}
             />
+
+            {this.state.isValid && <Text style={{color: 'red'}}>Check the email and try again</Text>}
 
             <Text h3>Password:</Text>
             <Input
@@ -58,6 +135,8 @@ export default class Signup2 extends Component {
               onChangeText={val => this.onChangeText('password', val)}
             />
 
+            {this.state.isValid && <Text style={{color: 'red'}}>Check the password and try again</Text>}
+
             <Text h3>Confirm Password:</Text>
             <Input
               placeholder='Password'
@@ -66,8 +145,10 @@ export default class Signup2 extends Component {
               onChangeText={val =>this.onChangeText('confirmPassword', val)}
             />
 
+            {this.state.isValid && <Text style={{color: 'red'}}>Check the password  and try again</Text>}
+
             <Button title='Create account' raised onPress= {
-              () => {this.checkUserInput()}
+              () => {{this.checkUserInput()} {this.setNameErrorMessage()} {this.setEmailErrorMessage()} {this.setPasswordErrorMessage()} {this.setPasswordConfirmErrorMessage()}}
             }/>
           </View>
       );

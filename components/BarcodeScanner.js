@@ -4,7 +4,7 @@ import { Text, View, StyleSheet } from 'react-native';
 import { Button } from 'react-native-elements'
 import { BarCodeScanner } from 'expo-barcode-scanner';
 import UserProvider from './Firebase';
-
+import styles  from './styles/button'
 
 export default class BarcodeScanner extends React.Component{
   constructor(props) {
@@ -70,17 +70,21 @@ export default class BarcodeScanner extends React.Component{
 
 
     return (
-      <View style={styles.container}>
+      <View style={stylesH.container}>
         <View style={{ flex: 1 }}>
+  
           <BarCodeScanner
             onBarCodeScanned={this.onBarCodeRead}
             style={StyleSheet.absoluteFill}
           />
+          <View style={styles.spaceBetweenButtons}></View>
           
           <Button title={'Add New Item'} clear 
             onPress = {() => {this.props.navigation.navigate("AddItem", {barcodeId: this.state.scannedItem.data})}}
           />
 
+          <View style={styles.spaceBetweenButtons}></View>
+          
           <Button title={'Scan Again'} clear 
             onPress = {() => {this.state.isBarcodeScannerEnabled = true}}
           />
@@ -91,7 +95,7 @@ export default class BarcodeScanner extends React.Component{
   }
 }
 
-const styles = StyleSheet.create({
+const stylesH = StyleSheet.create({
   container: {
     flex: 1,
     paddingTop: 15,

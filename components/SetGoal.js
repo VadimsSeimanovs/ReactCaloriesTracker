@@ -19,7 +19,8 @@ export default class SetGoal extends Component {
   state = {
     goalWeight: '',
     goalType: 'Lose weight',
-    goalWeightType: 'Kg'
+    goalWeightType: 'Kg',
+    isValid: false
   }
 
   onChangeText = (key, val) => {
@@ -35,35 +36,57 @@ export default class SetGoal extends Component {
       this.props.navigation.navigate('Signup2');
     }
   }
+
+  setWeightErrorMessage = () => {
+    const { goalWeight } = this.state
+    if({goalWeight}.length > 0){
+      tempData.push({
+        goalWeight, 
+        todos: []
+      })
+
+      this.setState({goalWeight: ''})
+      this.setState({isValid: false})
+      this.props.closeModal()
+    }else{
+      ({goalWeight}.length = 0)
+      this.setState({isValid: true})
+      return
+    }
+  }
+
     render(){
         return (
-            <View>
-              <Text h3>What do you want to achieve?</Text>
+          <View>
+            <Text h3>What do you want to achieve?</Text>
+            <RadioForm
+              radio_props={choice_props}
+              initial={0}
+              onPress={(value) => {this.setState({goalType:value})}}
+            />
+
+            <Text h3>How much weight do you want to lose/gain?</Text>
+            <Input
+              placeholder='Weight'
+              errorStyle={{ color: 'red' }}
+              onChangeText={val => this.onChangeText('goalWeight', val)}
+            />
+
+            {this.state.isValid && <Text style={{color: 'red'}}>Check the weight and try again</Text>}
+            
+            <View></View>
+            
+            <Text h3>Type weight:</Text>
               <RadioForm
-                radio_props={choice_props}
-                initial={0}
-                onPress={(value) => {this.setState({goalType:value})}}
-              />
+              radio_props={weight_props}
+              initial={0}
+              onPress={(value) => {this.setState({goalWeightType:value})}}
+            />
 
-              <Text h3>How much weight do you want to lose/gain?</Text>
-              <Input
-                placeholder='Weight'
-                errorStyle={{ color: 'red' }}
-                //errorMessage='Check the weight and try again'
-                onChangeText={val => this.onChangeText('goalWeight', val)}
-              />
-
-              <Text h3>Type weight:</Text>
-                <RadioForm
-                radio_props={weight_props}
-                initial={0}
-                onPress={(value) => {this.setState({goalWeightType:value})}}
-              />
-
-              <Button title='Continue' raised onPress= {
-                () => {this.checkUserInput()}
-              }/>
-    </View>
-  );
-}
+            <Button title='Continue' raised onPress= {
+              () => {{this.checkUserInput()} {this.setWeightErrorMessage()}}
+            }/>
+          </View>
+        );
+      }
 }

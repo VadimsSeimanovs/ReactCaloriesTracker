@@ -49,12 +49,6 @@ export default class AddItem extends React.Component {
 
         {/* <Input style={styles.textInput}
             placeholderTextColor='#707070'
-            placeholder='Brand'
-            value={this.state.brand}
-        /> */}
-
-        {/* <Input style={styles.textInput}
-            placeholderTextColor='#707070'
             placeholder='Serving size'
         /> */}
 
@@ -62,59 +56,42 @@ export default class AddItem extends React.Component {
             placeholderTextColor='#707070'
             placeholder='Calories'
             onChangeText={val=> this.onChangeText('energy', val)}
-            // value={this.state.itemEnergy}
         />
 
         <Input style={styles.textInput}
             placeholderTextColor='#707070'
             placeholder='Fat'
             onChangeText={val=> this.onChangeText('fat', val)}
-            // value={this.state.itemFat}
         />
-
-        {/* <Input style={styles.textInput}
-            placeholderTextColor='#707070'
-            placeholder='Saturated fat'
-        /> */}
-
-        {/* <Input style={styles.textInput}
-            placeholderTextColor='#707070'
-            placeholder='Cholesterol'
-        /> */}
 
         <Input style={styles.textInput}
             placeholderTextColor='#707070'
             placeholder='Sodium'
             onChangeText={val=> this.onChangeText('salt', val)}
-            // value={this.state.itemSalt}
         />
 
         <Input style={styles.textInput}
             placeholderTextColor='#707070'
             placeholder='Carbohydrates'
             onChangeText={val=> this.onChangeText('carbs', val)}
-            // value={this.state.itemCarbs}
         />
 
         <Input style={styles.textInput}
             placeholderTextColor='#707070'
             placeholder='Fibre'
             onChangeText={val=> this.onChangeText('fiber', val)}
-            // value={this.state.itemFiber}
         />
 
         <Input style={styles.textInput}
             placeholderTextColor='#707070'
             placeholder='Sugar'
             onChangeText={val=> this.onChangeText('sugar', val)}
-            // value={this.state.itemSugar}
         />
 
         <Input style={styles.textInput}
             placeholderTextColor='#707070'
             placeholder='Protein'
             onChangeText={val=> this.onChangeText('protein', val)}
-            // value={this.state.itemProtein}
         />
 
         <Button title='Add' raised onPress = { 

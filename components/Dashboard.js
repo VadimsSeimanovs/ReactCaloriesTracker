@@ -25,7 +25,7 @@ export default class Dashboard extends React.Component {
         return (
             <View style={styles.container}>
               <Button title='My Account' onPress = { 
-                () => this.props.navigation.navigate('Dashboard')} 
+                () => this.props.navigation.navigate('MyAccount')} 
                 style={{backgroundColor:'#C2DFFB'}}
                 buttonStyle={{backgroundColor:'#0F2080'}, {width:150}, {alignSelf:'flex-end'}}
               />
@@ -46,14 +46,3 @@ export default class Dashboard extends React.Component {
         );
     }
   }
-
-
-
-// const styles = StyleSheet.create({
-//   container: {
-//     flex: 1,
-//     backgroundColor: '#fff',
-//     alignItems: 'center',
-//     justifyContent: 'center',
-//   },
-// });

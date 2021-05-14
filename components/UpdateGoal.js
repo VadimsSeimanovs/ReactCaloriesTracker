@@ -1,7 +1,8 @@
 import React, { Component } from 'react';
-import { View } from 'react-native';
+import { View, SafeAreaView } from 'react-native';
 import { Text, Input, Button } from 'react-native-elements'
 import RadioForm from 'react-native-simple-radio-button';
+import styles from './styles/button';
 import User from './User';
 
 var choice_props = [
@@ -35,9 +36,31 @@ export default class UpdateGoal extends Component {
       this.props.navigation.navigate('Signup2');
     }
   }
+
+  setWeightErrorMessage = () => {
+    const { goalWeight } = this.state
+    if({goalWeight}.length > 0){
+      tempData.push({
+        goalWeight, 
+        todos: []
+      })
+
+      this.setState({goalWeight: ''})
+      this.setState({isValid: false})
+      this.props.closeModal()
+    }else{
+      ({goalWeight}.length = 0)
+      this.setState({isValid: true})
+      return
+    }
+  }
+  
     render(){
         return (
+          <SafeAreaView>
             <View>
+            <Text h2 style={styles.textInputLabel}>Update goal</Text>
+              <View style={styles.spaceBetweenButtons}></View>
               <Text h3>What do you want to achieve?</Text>
               <RadioForm
                 radio_props={choice_props}
@@ -45,13 +68,18 @@ export default class UpdateGoal extends Component {
                 onPress={(value) => {this.setState({goalType:value})}}
               />
 
+              <View style={styles.spaceBetweenButtons}></View>
+
               <Text h3>How much weight do you want to lose/gain?</Text>
               <Input
                 placeholder='Weight'
                 errorStyle={{ color: 'red' }}
-                errorMessage='Check the weight and try again'
                 onChangeText={val => this.onChangeText('goalWeight', val)}
               />
+              
+              {this.state.isValid && <Text style={{color: 'red'}}>Check the weight and try again</Text>}
+
+              <View style={styles.spaceBetweenButtons}></View>
 
               <Text h3>Type weight:</Text>
                 <RadioForm
@@ -59,11 +87,14 @@ export default class UpdateGoal extends Component {
                 initial={0}
                 onPress={(value) => {this.setState({goalWeightType:value})}}
               />
+              
+              <View style={styles.spaceBetweenButtons}></View>
 
               <Button title='Submit' raised onPress= {
-                () => {this.checkUserInput()}
+                () => {{this.checkUserInput()} {this.setWeightErrorMessage()}}
               }/>
     </View>
+    </SafeAreaView>
   );
 }
 }
