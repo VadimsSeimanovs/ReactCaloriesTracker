@@ -1,16 +1,16 @@
 import React from 'react';
-import { View, Text } from 'react-native';
+import { View } from 'react-native';
 import { Button } from 'react-native-elements'
-import { ProgressChart, BarChart } from 'react-native-chart-kit';
+import { ProgressChart } from 'react-native-chart-kit';
 import { Dimensions } from 'react-native';
 import styles  from './styles/button'
-import User from './User'
+import { SafeAreaView } from 'react-native';
 
 export default class Dashboard extends React.Component {
     render(){
       const data = {
         labels: ["Calories Intake", "Calories Left"], // optional
-        data: [200, User.getTotalCalories()]
+        data: [0.4, 0.6]
       };
       const windowWidth = Dimensions.get('window').width;
       const chartConfig = {
@@ -23,36 +23,16 @@ export default class Dashboard extends React.Component {
         barPercentage: 0.5,
         useShadowColorFromDataset: false // optional
       };
-
-      const data2 = {
-        labels: ["May"],
-        datasets: [
-          {
-            data: [parseFloat(User.getWeight())]
-          }
-        ]
-      };
-
-      const barChartConfig = {
-        backgroundGradientFrom: "#85C0F9",
-        backgroundGradientFromOpacity: 1,
-        backgroundGradientTo: "#85C0F9",
-        backgroundGradientToOpacity: 1,
-        color: (opacity = 1) => `rgba(245, 105, 58, ${opacity})`,
-        strokeWidth: 2, // optional, default 3
-        barPercentage: 0.5,
-        useShadowColorFromDataset: false // optional
-      };
-      
         return (
+          <SafeAreaView>
             <View style={styles.container}>
               <Button title='My Account' onPress = { 
-                () => this.props.navigation.navigate('MyAccount')} 
+                () => this.props.navigation.navigate('Dashboard')} 
                 style={{backgroundColor:'#C2DFFB'}}
                 buttonStyle={{backgroundColor:'#0F2080'}, {width:150}, {alignSelf:'flex-end'}}
               />
 
-              <View style={{marginTop:10}}/>
+              <View style={{marginTop:200}}/>
 
               <ProgressChart
                 style={{alignSelf:'center'}}
@@ -64,18 +44,8 @@ export default class Dashboard extends React.Component {
                 chartConfig={chartConfig}
                 hideLegend={false}
               />
-
-              <Text>Weight Progress</Text>
-              <BarChart
-                style={{alignSelf:'center'}}
-                data={data2}
-                width={windowWidth}
-                height={220}
-                fromZero={true}
-                chartConfig={barChartConfig}
-                verticalLabelRotation={30}
-              />
             </View>
+          </SafeAreaView>
         );
     }
   }

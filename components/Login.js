@@ -1,6 +1,6 @@
 import { StatusBar } from 'expo-status-bar';
 import React from 'react';
-import { View } from 'react-native';
+import { View, SafeAreaView } from 'react-native';
 import { Input, Button, Text } from 'react-native-elements'
 import UserProvider from './Firebase'
 import styles  from './styles/button'
@@ -23,6 +23,7 @@ export default class Login extends React.Component {
       UserProvider.signInUser(this.state.email, this.state.password);
         console.log(UserProvider.getUserExistance());
         if(UserProvider.getUserExistance() == true){
+          UserProvider.getUserLogInStatus()
             this.props.navigation.navigate('Dashboard');
             //Here fill the user class with the user details, pass this information to the dashboard
         }
@@ -34,6 +35,7 @@ export default class Login extends React.Component {
   render(){
     const { navigation } = this.props
     return (
+      <SafeAreaView>
       <View style={styles.container}>
           <Text style={styles.textInputLabel} h3>Email Address:</Text>
           <Input autoCorrect={true} autoCapitalize="none" style={styles.textInput}
@@ -75,6 +77,7 @@ export default class Login extends React.Component {
           />
           <StatusBar style="auto" />
       </View>
+      </SafeAreaView>
   );
 }
 }
